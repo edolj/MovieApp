@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD3CA73F2051B096005C563B /* NewMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3CA73E2051B096005C563B /* NewMoviesTests.swift */; };
 		DDFD61BE204462C900722103 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD61BD204462C900722103 /* AppDelegate.swift */; };
 		DDFD61C0204462C900722103 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD61BF204462C900722103 /* ViewController.swift */; };
 		DDFD61C3204462C900722103 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFD61C1204462C900722103 /* Main.storyboard */; };
@@ -19,7 +20,20 @@
 		DDFD61DA2044D34100722103 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD61D92044D34100722103 /* MovieDetails.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DD3CA7412051B096005C563B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDFD61B2204462C900722103 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDFD61B9204462C900722103;
+			remoteInfo = NewMovies;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		DD3CA73C2051B096005C563B /* NewMoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewMoviesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD3CA73E2051B096005C563B /* NewMoviesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMoviesTests.swift; sourceTree = "<group>"; };
+		DD3CA7402051B096005C563B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDFD61BA204462C900722103 /* NewMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDFD61BD204462C900722103 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDFD61BF204462C900722103 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +49,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DD3CA7392051B096005C563B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDFD61B7204462C900722103 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,10 +66,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD3CA73D2051B096005C563B /* NewMoviesTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD3CA73E2051B096005C563B /* NewMoviesTests.swift */,
+				DD3CA7402051B096005C563B /* Info.plist */,
+			);
+			path = NewMoviesTests;
+			sourceTree = "<group>";
+		};
 		DDFD61B1204462C900722103 = {
 			isa = PBXGroup;
 			children = (
 				DDFD61BC204462C900722103 /* NewMovies */,
+				DD3CA73D2051B096005C563B /* NewMoviesTests */,
 				DDFD61BB204462C900722103 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				DDFD61BA204462C900722103 /* NewMovies.app */,
+				DD3CA73C2051B096005C563B /* NewMoviesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,6 +114,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DD3CA73B2051B096005C563B /* NewMoviesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD3CA7452051B096005C563B /* Build configuration list for PBXNativeTarget "NewMoviesTests" */;
+			buildPhases = (
+				DD3CA7382051B096005C563B /* Sources */,
+				DD3CA7392051B096005C563B /* Frameworks */,
+				DD3CA73A2051B096005C563B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD3CA7422051B096005C563B /* PBXTargetDependency */,
+			);
+			name = NewMoviesTests;
+			productName = NewMoviesTests;
+			productReference = DD3CA73C2051B096005C563B /* NewMoviesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DDFD61B9204462C900722103 /* NewMovies */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DDFD61CC204462C900722103 /* Build configuration list for PBXNativeTarget "NewMovies" */;
@@ -109,6 +159,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Edo Ljubijankic";
 				TargetAttributes = {
+					DD3CA73B2051B096005C563B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DDFD61B9204462C900722103;
+					};
 					DDFD61B9204462C900722103 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -129,11 +184,19 @@
 			projectRoot = "";
 			targets = (
 				DDFD61B9204462C900722103 /* NewMovies */,
+				DD3CA73B2051B096005C563B /* NewMoviesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DD3CA73A2051B096005C563B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDFD61B8204462C900722103 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -147,6 +210,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DD3CA7382051B096005C563B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD3CA73F2051B096005C563B /* NewMoviesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDFD61B6204462C900722103 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -162,6 +233,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD3CA7422051B096005C563B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDFD61B9204462C900722103 /* NewMovies */;
+			targetProxy = DD3CA7412051B096005C563B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DDFD61C1204462C900722103 /* Main.storyboard */ = {
@@ -183,6 +262,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DD3CA7432051B096005C563B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NewMoviesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.NewMoviesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewMovies.app/NewMovies";
+			};
+			name = Debug;
+		};
+		DD3CA7442051B096005C563B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NewMoviesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.NewMoviesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewMovies.app/NewMovies";
+			};
+			name = Release;
+		};
 		DDFD61CA204462C900722103 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -325,6 +434,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DD3CA7452051B096005C563B /* Build configuration list for PBXNativeTarget "NewMoviesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD3CA7432051B096005C563B /* Debug */,
+				DD3CA7442051B096005C563B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DDFD61B5204462C900722103 /* Build configuration list for PBXProject "NewMovies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
