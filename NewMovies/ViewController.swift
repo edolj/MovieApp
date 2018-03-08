@@ -64,7 +64,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 {
                     do
                     {
-                        //Resultado da busca do JSON
+
                         let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                         
                         if let search = myJson["Search"] as? [NSDictionary]
