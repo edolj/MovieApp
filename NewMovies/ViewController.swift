@@ -47,10 +47,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //movies.append(newMovie)
         
         let searchMovie = titleField.text!
-        let removeSpaces = searchMovie.trimmingCharacters(in: .whitespacesAndNewlines)
+        //---
+            
+        parseData(key: searchMovie)
+            
+        }
+    }
+    
+    func parseData(key: String) {
+        let removeSpaces = key.trimmingCharacters(in: .whitespacesAndNewlines)
         let modifySearch = removeSpaces.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
         //print(modifySearch)
-            
+        
         let connectUrl = "http://www.omdbapi.com/?apikey=482d09e9&s="+modifySearch
         let url = URL(string: connectUrl)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
@@ -64,7 +72,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 {
                     do
                     {
-
+                        
                         let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                         
                         if let search = myJson["Search"] as? [NSDictionary]
@@ -72,7 +80,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                             for result in search {
                                 //print(result["Title"]!)
                                 //print(result["Year"]!)
-                            
+                                
                                 self.movies.append(Movie(name: result["Title"]! as! String, year: result["Year"]! as! String))
                             }
                         }
@@ -88,8 +96,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.tableView.reloadData()
-        }
-            
         }
     }
     
