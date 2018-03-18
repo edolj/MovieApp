@@ -22,6 +22,10 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var langDetails: UILabel!
     @IBOutlet weak var imageDetails: UIImageView!
     
+    @IBOutlet weak var trailerButton: UIButton!
+    
+    var imdbID: String?
+    
     var getMovie: Movie?
     var movieDetails: MovieDetails?
     
@@ -72,6 +76,7 @@ class MovieDetailsViewController: UIViewController {
                         let actors = String(describing: myJson["Actors"]!)
                         let lang = String(describing: myJson["Language"]!)
                         let image = String(describing: myJson["Poster"]!)
+                        self.imdbID = String(describing: myJson["imdbID"]!)
                         
                         self.movieDetails = MovieDetails(title: title, year: year, rated: rating, released: released, runtime: runtime, genre: genre, director: director, writer: writer, actors: actors, plot: plot, language: lang, poster: image)
                         
@@ -108,14 +113,11 @@ class MovieDetailsViewController: UIViewController {
     
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showTrailer" {
+            let controller = segue.destination as! VideoViewController
+            controller.imdbID = imdbID
+        }
     }
-    */
 
  }

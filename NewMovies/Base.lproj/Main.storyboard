@@ -111,7 +111,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfE-7M-oG3">
-                                                <rect key="frame" x="17" y="239" width="350" height="21"/>
+                                                <rect key="frame" x="17" y="239" width="205" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -170,6 +170,17 @@
                                                 <rect key="frame" x="5" y="604" width="365" height="325"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ga-fw-fbO">
+                                                <rect key="frame" x="243" y="234" width="112" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.89329484910000001" green="0.87166085559999995" blue="0.91578286919999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Watch Trailer">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="VNo-LA-9DD" kind="show" identifier="showTrailer" id="um2-FK-AhE"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -207,12 +218,47 @@
                         <outlet property="releaseDetails" destination="w27-Xy-xfY" id="Y5s-79-UGn"/>
                         <outlet property="runtimeDetails" destination="o1Q-zM-IoI" id="oEX-va-T2y"/>
                         <outlet property="titleDetails" destination="YQV-Pu-UMN" id="1wz-c8-wvz"/>
+                        <outlet property="trailerButton" destination="9ga-fw-fbO" id="Ke6-Bo-Slf"/>
                         <outlet property="yearDetails" destination="VwT-ra-XPY" id="OMB-Hw-BH5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJW-Hj-jG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1408.8" y="116.94152923538232"/>
+        </scene>
+        <!--Video View Controller-->
+        <scene sceneID="mdK-zr-H6Z">
+            <objects>
+                <viewController id="VNo-LA-9DD" customClass="VideoViewController" customModule="NewMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xmq-uU-8gc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLe-TO-wvi">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VLe-TO-wvi" firstAttribute="trailing" secondItem="tCd-G9-dBY" secondAttribute="trailing" id="5FG-DG-cuY"/>
+                            <constraint firstItem="tCd-G9-dBY" firstAttribute="bottom" secondItem="VLe-TO-wvi" secondAttribute="bottom" id="XBc-pc-DPr"/>
+                            <constraint firstItem="VLe-TO-wvi" firstAttribute="top" secondItem="tCd-G9-dBY" secondAttribute="top" id="nFa-Ds-w4K"/>
+                            <constraint firstItem="VLe-TO-wvi" firstAttribute="leading" secondItem="tCd-G9-dBY" secondAttribute="leading" id="oUm-fZ-0ly"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tCd-G9-dBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="VLe-TO-wvi" id="M3Q-jc-BVo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ImT-Pq-D8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2416.8000000000002" y="116.49175412293854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eXv-4M-FP3">
