@@ -83,7 +83,7 @@ class MovieDetailsViewController: UIViewController {
                          DispatchQueue.main.async {
                             self.titleDetails.text = self.movieDetails!.title
                             self.plotDetails.text = self.movieDetails!.plot
-                            self.ratingDetails.text = "Rating: " + self.movieDetails!.rated
+                            self.ratingDetails.text = "IMDB Rating: " + self.movieDetails!.rated
                             self.actorsDetails.text = "Actors: " + self.movieDetails!.actors
                             self.directorDetails.text = "Director: " + self.movieDetails!.director
                             self.yearDetails.text = "Year: " + self.movieDetails!.year
