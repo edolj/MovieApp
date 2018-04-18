@@ -68,10 +68,10 @@ class VideoViewController: UIViewController {
                                         let myJson2 = try JSONSerialization.jsonObject(with: content2, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                                         
                                         //print(myJson2.value(forKey: "results")!)
-                                        var collect = myJson2.value(forKey: "results")!
+                                        let collect = myJson2.value(forKey: "results")!
                                         if let stringArray = collect as? [NSDictionary] {
                                             //print(stringArray[0]["key"]!)
-                                            self.keyID = stringArray[0]["key"]! as! String
+                                            self.keyID = stringArray[0]["key"]! as? String
                                         }
                                         else {
                                             print("not string")
@@ -100,9 +100,13 @@ class VideoViewController: UIViewController {
         task.resume()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let yturl = URL(string: "https://www.youtube.com/watch?v=\(self.keyID!)")
-            let request = URLRequest(url: yturl!)
-            self.webview.load(request)
+            if(self.keyID != nil) {
+                let yturl = URL(string: "https://www.youtube.com/watch?v=\(self.keyID!)")
+                let request = URLRequest(url: yturl!)
+                self.webview.load(request)
+            } else {
+                print("No content found.");
+            }
         }
     
     }
