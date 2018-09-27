@@ -20,44 +20,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func findMovie(_ sender: UIButton) {
-        //print(titleField.text! + " " + yearField.text!)
-    
         if titleField.text?.isEmpty ?? true {
             print("is empty")
         } else {
-            
-        
-        //let movie1 = Movie(name: "It", year: "2017")
-        //let movie2 = Movie(name: "Town", year: "2010")
-        //let newMovie = Movie(name: titleField.text!, year: yearField.text!)
-        //movies += [movie1,movie2,newMovie]
-        //movies.append(newMovie)
-        
-        let searchMovie = titleField.text!
-        //---
-            
-        parseData(key: searchMovie)
-            
+            if let searchMovie = titleField.text {
+                parseData(key: searchMovie)
+            }
         }
     }
     
     func parseData(key: String) {
         let removeSpaces = key.trimmingCharacters(in: .whitespacesAndNewlines)
         let modifySearch = removeSpaces.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-        //print(modifySearch)
         
         let connectUrl = "http://www.omdbapi.com/?apikey=482d09e9&s="+modifySearch
         let url = URL(string: connectUrl)
@@ -117,10 +101,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "idCell", for: indexPath) as! MovieTableViewCell
         let row = movies[indexPath.row]
-        
         cell.movieName.text = row.name + " ( " + row.year + " ) "
         
         return cell

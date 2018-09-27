@@ -17,5 +17,4 @@ class Movie {
         self.name = name
         self.year = year
     }
-    
 }

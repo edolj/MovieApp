@@ -10,38 +10,32 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
+    
     @IBOutlet weak var titleDetails: UILabel!
-    @IBOutlet weak var plotDetails: UITextView!
+    @IBOutlet weak var posterDetails: UIImageView!
     @IBOutlet weak var ratingDetails: UILabel!
-    @IBOutlet weak var actorsDetails: UITextView!
+    @IBOutlet weak var actorsDetails: UILabel!
     @IBOutlet weak var directorDetails: UILabel!
-    @IBOutlet weak var yearDetails: UILabel!
-    @IBOutlet weak var releaseDetails: UILabel!
+    @IBOutlet weak var plotDetails: UITextView!
     @IBOutlet weak var runtimeDetails: UILabel!
+    @IBOutlet weak var yearDetails: UILabel!
     @IBOutlet weak var genreDetails: UILabel!
+    @IBOutlet weak var releaseDetails: UILabel!
     @IBOutlet weak var langDetails: UILabel!
-    @IBOutlet weak var imageDetails: UIImageView!
-    
-    @IBOutlet weak var trailerButton: UIButton!
-    
-    var imdbID: String?
+//    @IBOutlet weak var trailerButton: UIButton!
     
     var getMovie: Movie?
     var movieDetails: MovieDetails?
+    var imdbID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        //titleDetails.text = getMovie!.name
-        //plotDetails.text = getMovie!.year
-        
         loadMovieDetails()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     public func loadMovieDetails() {
@@ -61,8 +55,6 @@ class MovieDetailsViewController: UIViewController {
                     do
                     {
                         let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
-                        
-                        //print(myJson)
                         
                         let title = String(describing: myJson["Title"]!)
                         let plot = String(describing: myJson["Plot"]!)
@@ -93,13 +85,11 @@ class MovieDetailsViewController: UIViewController {
                             self.langDetails.text = "Language: " + self.movieDetails!.language
                             
                             let imageUrl = self.movieDetails?.poster
-                            if imageUrl == nil {
-                                return
+                            if let image = imageUrl {
+                                let url = URL(string: image)
+                                let data = try? Data(contentsOf: url!)
+                                self.posterDetails.image = UIImage(data: data!)
                             }
-                            let url = URL(string: imageUrl!)
-                            let data = try? Data(contentsOf: url!)
-                            
-                            self.imageDetails.image = UIImage(data: data!)
                         }
                     }
                     catch

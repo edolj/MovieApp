@@ -37,5 +37,4 @@ class MovieDetails {
         self.language = language
         self.poster = poster
     }
-
 }
