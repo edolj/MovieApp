@@ -22,7 +22,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var genreDetails: UILabel!
     @IBOutlet weak var releaseDetails: UILabel!
     @IBOutlet weak var langDetails: UILabel!
-//    @IBOutlet weak var trailerButton: UIButton!
+    @IBOutlet weak var trailerButton: UIButton!
     
     var getMovie: Movie?
     var movieDetails: MovieDetails?
@@ -30,7 +30,12 @@ class MovieDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        trailerButton.backgroundColor = .red
+        trailerButton.layer.cornerRadius = 5
+        trailerButton.layer.borderWidth = 1
+        trailerButton.layer.borderColor = UIColor.red.cgColor
+        
         loadMovieDetails()
     }
 
@@ -42,8 +47,11 @@ class MovieDetailsViewController: UIViewController {
         let movieName = getMovie!.name.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
         
         let urlApi = "http://www.omdbapi.com/?apikey=482d09e9&t="+movieName
-        let url = URL(string: urlApi)
-        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+        guard let url = URL(string: urlApi) else {
+            titleDetails.text = "Movie NOT found in database! Sorry"
+            return
+        }
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil
             {
                 print("error")
@@ -75,6 +83,7 @@ class MovieDetailsViewController: UIViewController {
                          DispatchQueue.main.async {
                             self.titleDetails.text = self.movieDetails!.title
                             self.plotDetails.text = self.movieDetails!.plot
+                            self.plotDetails.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
                             self.ratingDetails.text = "IMDB Rating: " + self.movieDetails!.rated
                             self.actorsDetails.text = "Actors: " + self.movieDetails!.actors
                             self.directorDetails.text = "Director: " + self.movieDetails!.director
@@ -87,8 +96,10 @@ class MovieDetailsViewController: UIViewController {
                             let imageUrl = self.movieDetails?.poster
                             if let image = imageUrl {
                                 let url = URL(string: image)
-                                let data = try? Data(contentsOf: url!)
-                                self.posterDetails.image = UIImage(data: data!)
+                                guard let data = try? Data(contentsOf: url!) else {
+                                    return
+                                }
+                                self.posterDetails.image = UIImage(data: data)
                             }
                         }
                     }

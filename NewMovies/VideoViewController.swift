@@ -28,7 +28,11 @@ class VideoViewController: UIViewController {
     }
     
     func loadTrailerVideo() {
-        let urlApi = "http://api.themoviedb.org/3/movie/\(imdbID!)?api_key=1fe1b7a660e0e0e7cde9c78d327c03e8"
+        guard let imdbRating = imdbID else {
+            return
+        }
+        
+        let urlApi = "http://api.themoviedb.org/3/movie/\(imdbRating)?api_key=1fe1b7a660e0e0e7cde9c78d327c03e8"
         let url = URL(string: urlApi)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil
