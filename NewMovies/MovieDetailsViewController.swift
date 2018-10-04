@@ -10,7 +10,6 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
-    
     @IBOutlet weak var titleDetails: UILabel!
     @IBOutlet weak var posterDetails: UIImageView!
     @IBOutlet weak var ratingDetails: UILabel!
@@ -48,7 +47,7 @@ class MovieDetailsViewController: UIViewController {
         
         let urlApi = "http://www.omdbapi.com/?apikey=482d09e9&t="+movieName
         guard let url = URL(string: urlApi) else {
-            titleDetails.text = "Movie NOT found in database! Sorry"
+            titleDetails.text = "Movie NOT found in our database! Return back."
             return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in

@@ -138,7 +138,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Director" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOb-fQ-5uF">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="Director" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOb-fQ-5uF">
                                                 <rect key="frame" x="10" y="335" width="355" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -146,7 +146,7 @@
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="descriptionView" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAr-MJ-p7J">
                                                 <rect key="frame" x="10" y="365.5" width="355" height="120"/>
-                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="lqM-bh-vdy"/>
                                                 </constraints>
@@ -185,18 +185,22 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVg-C3-8T7">
-                                                <rect key="frame" x="248" y="260.5" width="117" height="36"/>
+                                                <rect key="frame" x="235" y="260.5" width="130" height="36"/>
                                                 <color key="backgroundColor" red="1" green="0.17468594039999999" blue="0.14367126769999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="V6v-ne-mED"/>
+                                                    <constraint firstAttribute="height" constant="36" id="fnJ-jg-USB"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Watch Trailer ">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" red="1" green="0.9703043173" blue="0.36452185040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="VNo-LA-9DD" kind="show" identifier="showTrailer" id="bVJ-Ds-wfw"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="LOb-fQ-5uF" firstAttribute="leading" secondItem="POV-bS-Zip" secondAttribute="leading" id="1ZW-ee-ADL"/>
                                             <constraint firstItem="LOb-fQ-5uF" firstAttribute="top" secondItem="UTT-K6-jhh" secondAttribute="bottom" constant="10" id="1pW-uG-oDs"/>
@@ -211,10 +215,10 @@
                                             <constraint firstItem="MKh-Zf-bvY" firstAttribute="leading" secondItem="POV-bS-Zip" secondAttribute="leading" id="KYE-V6-q9G"/>
                                             <constraint firstItem="pAr-MJ-p7J" firstAttribute="trailing" secondItem="POV-bS-Zip" secondAttribute="trailing" id="LJJ-j7-GvY"/>
                                             <constraint firstItem="UTT-K6-jhh" firstAttribute="leading" secondItem="POV-bS-Zip" secondAttribute="leading" id="Ltx-zC-1cT"/>
-                                            <constraint firstItem="bVg-C3-8T7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pjV-UO-aKy" secondAttribute="trailing" constant="8" symbolic="YES" id="N9c-a3-z2u"/>
                                             <constraint firstItem="xlb-MP-qVu" firstAttribute="top" secondItem="LaD-Wg-8rx" secondAttribute="bottom" constant="10" id="NGd-G7-Rjm"/>
                                             <constraint firstItem="pjV-UO-aKy" firstAttribute="top" secondItem="L1e-w0-gNI" secondAttribute="bottom" constant="15" id="Nqk-W5-YhZ"/>
                                             <constraint firstItem="pAr-MJ-p7J" firstAttribute="leading" secondItem="POV-bS-Zip" secondAttribute="leading" id="O1c-Ot-oI4"/>
+                                            <constraint firstItem="bVg-C3-8T7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pjV-UO-aKy" secondAttribute="trailing" constant="10" id="PRm-6O-Uxg"/>
                                             <constraint firstItem="MKh-Zf-bvY" firstAttribute="top" secondItem="nxg-nr-BxP" secondAttribute="bottom" constant="10" id="Pvn-Fm-sAx"/>
                                             <constraint firstItem="LaD-Wg-8rx" firstAttribute="leading" secondItem="POV-bS-Zip" secondAttribute="leading" id="UPg-4c-ftu"/>
                                             <constraint firstItem="POV-bS-Zip" firstAttribute="top" secondItem="Fnl-iq-bhH" secondAttribute="top" constant="15" id="VqQ-F8-gcw"/>
@@ -247,7 +251,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="keO-sg-1Xy" firstAttribute="leading" secondItem="2XZ-95-E8F" secondAttribute="leading" id="598-9r-SBd"/>
                             <constraint firstItem="keO-sg-1Xy" firstAttribute="top" secondItem="2XZ-95-E8F" secondAttribute="top" id="d3O-XY-0dF"/>
@@ -285,14 +289,14 @@
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLe-TO-wvi">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0012953367879999999" green="0.001276915423" blue="0.001283403326" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VLe-TO-wvi" firstAttribute="trailing" secondItem="tCd-G9-dBY" secondAttribute="trailing" id="5FG-DG-cuY"/>
                             <constraint firstItem="tCd-G9-dBY" firstAttribute="bottom" secondItem="VLe-TO-wvi" secondAttribute="bottom" id="XBc-pc-DPr"/>

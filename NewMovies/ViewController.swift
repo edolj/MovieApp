@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: MoviesTableView!
-    
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var findButton: UIButton!
     

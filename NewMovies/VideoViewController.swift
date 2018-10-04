@@ -47,40 +47,48 @@ class VideoViewController: UIViewController {
                     {
                         let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                         
-                        self.parseID = String(describing: myJson["id"]!)
-                        let secondUrl = "http://api.themoviedb.org/3/movie/\(self.parseID!)/videos?api_key=1fe1b7a660e0e0e7cde9c78d327c03e8"
-                        let url2 = URL(string: secondUrl)
-                        let task2 = URLSession.shared.dataTask(with: url2!) { (data2, response, error2) in
-                            if error2 != nil
-                            {
-                                print("error")
-                            }
-                            else
-                            {
-                                if let content2 = data2
+                        if let unwrapID = myJson["id"] {
+                            self.parseID = String(describing: unwrapID)
+                            let secondUrl = "http://api.themoviedb.org/3/movie/\(self.parseID!)/videos?api_key=1fe1b7a660e0e0e7cde9c78d327c03e8"
+                            let url2 = URL(string: secondUrl)
+                            let task2 = URLSession.shared.dataTask(with: url2!) { (data2, response, error2) in
+                                if error2 != nil
                                 {
-                                    do
+                                    print("error")
+                                }
+                                else
+                                {
+                                    if let content2 = data2
                                     {
-                                        let myJson2 = try JSONSerialization.jsonObject(with: content2, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
-                                        
-                                        let collect = myJson2.value(forKey: "results")!
-                                        if let stringArray = collect as? [NSDictionary] {
-                                            //print(stringArray[0]["key"]!)
-                                            self.keyID = stringArray[0]["key"]! as? String
+                                        do
+                                        {
+                                            let myJson2 = try JSONSerialization.jsonObject(with: content2, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                                            
+                                            let collect = myJson2.value(forKey: "results")!
+                                            if let stringArray = collect as? [NSDictionary] {
+                                                // check if dictionary empty to avoid app crashing
+                                                if stringArray.count != 0 {
+                                                    //print(stringArray[0]["key"]!)
+                                                    self.keyID = stringArray[0]["key"]! as? String
+                                                } else {
+                                                    // self.keyID is empty here, therefore no video will play
+                                                }
+                                            }
+                                            else {
+                                                print("not string")
+                                            }
                                         }
-                                        else {
-                                            print("not string")
+                                        catch
+                                        {
+                                            print("error in JSONSerialization")
                                         }
-                                    }
-                                    catch
-                                    {
-                                        print("error in JSONSerialization")
                                     }
                                 }
                             }
+                            task2.resume()
+                        } else {
+                            // self.parseID is empty here
                         }
-                        task2.resume()
-                    
                     }
                     catch
                     {
@@ -91,7 +99,7 @@ class VideoViewController: UIViewController {
         }
         task.resume()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if let key = self.keyID {
                 if let yturl = URL(string: "https://www.youtube.com/watch?v=\(key)") {
                     let request = URLRequest(url: yturl)
