@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: MoviesTableView!
     @IBOutlet weak var titleField: UITextField!
@@ -20,15 +20,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        titleField.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.backgroundColor = UIColor.init(red: 31/255, green: 33/255, blue: 36/255, alpha: 1.0)
+        findButton.backgroundColor = .yellow
+        findButton.layer.cornerRadius = 5
+        titleField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        titleField.resignFirstResponder()
+        searchDatabase()
+        return true
+    }
+    
     @IBAction func findMovie(_ sender: UIButton) {
+        searchDatabase()
+    }
+    
+    func searchDatabase() {
+        // to clear table cell data for new input
+        movies.removeAll()
+        tableView.reloadData()
+        // table cells empty
         if titleField.text?.isEmpty ?? true {
             print("is empty")
         } else {
@@ -55,7 +75,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 {
                     do
                     {
-                        
                         let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                         
                         if let search = myJson["Search"] as? [NSDictionary]
@@ -77,7 +96,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         task.resume()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.tableView.reloadData()
         }
     }

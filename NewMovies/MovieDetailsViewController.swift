@@ -30,10 +30,8 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        trailerButton.backgroundColor = .red
+        trailerButton.backgroundColor = .yellow
         trailerButton.layer.cornerRadius = 5
-        trailerButton.layer.borderWidth = 1
-        trailerButton.layer.borderColor = UIColor.red.cgColor
         
         loadMovieDetails()
     }
