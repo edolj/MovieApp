@@ -81,9 +81,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         {
                             for result in search {
                                 //print(result["Title"]!)
-                                //print(result["Year"]!)
-                                
-                                self.movies.append(Movie(name: result["Title"]! as! String, year: result["Year"]! as! String))
+                                self.movies.append(Movie(name: result["Title"]! as! String, year: result["Year"]! as! String, poster: result["Poster"]! as! String))
                             }
                         }
                     }
@@ -121,10 +119,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "idCell", for: indexPath) as! MovieTableViewCell
         let row = movies[indexPath.row]
+        
+        let urlToPoster = URL(string: row.poster)
+        if let data = try? Data(contentsOf: urlToPoster!) {
+            cell.moviePoster.image = UIImage(data: data)
+        } else {
+            cell.moviePoster.image = nil
+        }
         cell.movieName.text = row.name + " ( " + row.year + " ) "
         
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Change the selected background view of the cell.
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 

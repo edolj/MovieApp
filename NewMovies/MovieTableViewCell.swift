@@ -11,14 +11,11 @@ import UIKit
 class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var movieName: UILabel!
+    @IBOutlet weak var moviePoster: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         movieName.textColor = .white
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 }

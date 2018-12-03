@@ -9,9 +9,10 @@
 import UIKit
 import WebKit
 
-class VideoViewController: UIViewController {
+class VideoViewController: UIViewController, WKNavigationDelegate {
     
     @IBOutlet weak var webview: WKWebView!
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     var imdbID: String?
     var parseID: String?
@@ -19,7 +20,13 @@ class VideoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.webview.navigationDelegate = self;
+        self.webview.addSubview(self.activityView)
+        self.activityView.startAnimating()
+        self.webview.navigationDelegate = self
+        self.activityView.hidesWhenStopped = true
+        
         loadTrailerVideo()
     }
 
@@ -35,16 +42,11 @@ class VideoViewController: UIViewController {
         let urlApi = "http://api.themoviedb.org/3/movie/\(imdbRating)?api_key=1fe1b7a660e0e0e7cde9c78d327c03e8"
         let url = URL(string: urlApi)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            if error != nil
-            {
+            if error != nil {
                 print("error")
-            }
-            else
-            {
-                if let content = data
-                {
-                    do
-                    {
+            } else {
+                if let content = data {
+                    do {
                         let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                         
                         if let unwrapID = myJson["id"] {
@@ -89,9 +91,7 @@ class VideoViewController: UIViewController {
                         } else {
                             // self.parseID is empty here
                         }
-                    }
-                    catch
-                    {
+                    } catch {
                         print("error in JSONSerialization")
                     }
                 }
@@ -109,6 +109,14 @@ class VideoViewController: UIViewController {
                 print("No content found.");
             }
         }
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        activityView.stopAnimating()
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        activityView.stopAnimating()
     }
 
 }

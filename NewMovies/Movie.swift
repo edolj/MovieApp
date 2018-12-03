@@ -12,9 +12,11 @@ class Movie {
 
     let name:String
     let year:String
+    let poster:String
     
-    init(name:String, year:String) {
+    init(name:String, year:String, poster:String) {
         self.name = name
         self.year = year
+        self.poster = poster
     }
 }
