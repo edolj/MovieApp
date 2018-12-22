@@ -124,7 +124,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let data = try? Data(contentsOf: urlToPoster!) {
             cell.moviePoster.image = UIImage(data: data)
         } else {
-            cell.moviePoster.image = nil
+            cell.moviePoster.image = UIImage(named: "missing_image")
         }
         cell.movieName.text = row.name + " ( " + row.year + " ) "
         

@@ -94,6 +94,7 @@ class MovieDetailsViewController: UIViewController {
                             if let image = imageUrl {
                                 let url = URL(string: image)
                                 guard let data = try? Data(contentsOf: url!) else {
+                                    self.posterDetails.image = UIImage(named: "missing_image")
                                     return
                                 }
                                 self.posterDetails.image = UIImage(data: data)
