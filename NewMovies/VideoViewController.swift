@@ -42,12 +42,11 @@ class VideoViewController: UIViewController, WKNavigationDelegate {
                 } else {
                     if let content = data {
                         do {
-                            let jsonFile = try JSONSerialization.jsonObject(with: content,
-                            options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
-
-                            if let unwrapID = jsonFile["id"] {
-                                let parseID = String(describing: unwrapID)
-                                let secondUrl = "http://api.themoviedb.org/3/movie/\(parseID)/videos?api_key=1fe1b7a660e0e0e7cde9c78d327c03e8"
+                            if let jsonFile = try JSONSerialization.jsonObject(with: content,
+                            options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary,
+                                let unwrapID = jsonFile["id"] {
+                                    let parseID = String(describing: unwrapID)
+                                    let secondUrl = "http://api.themoviedb.org/3/movie/\(parseID)/videos?api_key=1fe1b7a660e0e0e7cde9c78d327c03e8"
                                 if let url2 = URL(string: secondUrl) {
                                     let task2 = URLSession.shared.dataTask(with: url2) { (data2, response, error2) in
                                         if error2 != nil {
@@ -55,10 +54,9 @@ class VideoViewController: UIViewController, WKNavigationDelegate {
                                         } else {
                                             if let content2 = data2 {
                                                 do {
-                                                    let jsonFile2 = try JSONSerialization.jsonObject(with: content2,
-                                                    options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
-                                                    
-                                                    if let collect = jsonFile2.value(forKey: "results"),
+                                                    if let jsonFile2 = try JSONSerialization.jsonObject(with: content2,
+                                                    options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary,
+                                                    let collect = jsonFile2.value(forKey: "results"),
                                                         let stringArray = collect as? [NSDictionary],
                                                         let keyID = stringArray[0]["key"] as? String {
                                                             self.keyID = keyID
