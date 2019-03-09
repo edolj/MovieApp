@@ -23,98 +23,96 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var langDetails: UILabel!
     @IBOutlet weak var trailerButton: UIButton!
     
-    var getMovie: Movie?
-    var movieDetails: MovieDetails?
+    var getMovie: MovieModel?
+    var movieDetails: MovieDetailsModel?
     var imdbID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        plotDetails.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         
         trailerButton.backgroundColor = .yellow
         trailerButton.layer.cornerRadius = 5
         
         loadMovieDetails()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     public func loadMovieDetails() {
-        let movieName = getMovie!.name.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-        
+        guard let movie = getMovie else {
+            return
+        }
+
+        let movieName = movie.name.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
         let urlApi = "http://www.omdbapi.com/?apikey=482d09e9&t="+movieName
+        
         guard let url = URL(string: urlApi) else {
             titleDetails.text = "Movie NOT found in our database! Return back."
             return
         }
+        
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil
-            {
-                print("error")
-            }
-            else
-            {
-                if let content = data
-                {
-                    do
-                    {
-                        let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+            if error != nil {
+                print("Error with URLSession.")
+            } else {
+                if let content = data {
+                    do {
+                        if let jsonFile = try JSONSerialization.jsonObject(with: content,
+                            options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary,
+                            let title = jsonFile["Title"] as? String,
+                            let plot = jsonFile["Plot"] as? String,
+                            let rating = jsonFile["imdbRating"] as? String,
+                            let year = jsonFile["Year"] as? String,
+                            let released = jsonFile["Released"] as? String,
+                            let runtime = jsonFile["Runtime"] as? String,
+                            let genre = jsonFile["Genre"] as? String,
+                            let director = jsonFile["Director"] as? String,
+                            let writer = jsonFile["Writer"] as? String,
+                            let actors = jsonFile["Actors"] as? String,
+                            let lang = jsonFile["Language"] as? String,
+                            let image = jsonFile["Poster"] as? String,
+                            let imdb = jsonFile["imdbID"] as? String {
                         
-                        let title = String(describing: myJson["Title"]!)
-                        let plot = String(describing: myJson["Plot"]!)
-                        let rating = String(describing: myJson["imdbRating"]!)
-                        let year = String(describing: myJson["Year"]!)
-                        let released = String(describing: myJson["Released"]!)
-                        let runtime = String(describing: myJson["Runtime"]!)
-                        let genre = String(describing: myJson["Genre"]!)
-                        let director = String(describing: myJson["Director"]!)
-                        let writer = String(describing: myJson["Writer"]!)
-                        let actors = String(describing: myJson["Actors"]!)
-                        let lang = String(describing: myJson["Language"]!)
-                        let image = String(describing: myJson["Poster"]!)
-                        self.imdbID = String(describing: myJson["imdbID"]!)
-                        
-                        self.movieDetails = MovieDetails(title: title, year: year, rated: rating, released: released, runtime: runtime, genre: genre, director: director, writer: writer, actors: actors, plot: plot, language: lang, poster: image)
-                        
-                         DispatchQueue.main.async {
-                            self.titleDetails.text = self.movieDetails!.title
-                            self.plotDetails.text = self.movieDetails!.plot
-                            self.plotDetails.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
-                            self.ratingDetails.text = "IMDB Rating: " + self.movieDetails!.rated
-                            self.actorsDetails.text = "Actors: " + self.movieDetails!.actors
-                            self.directorDetails.text = "Director: " + self.movieDetails!.director
-                            self.yearDetails.text = "Year: " + self.movieDetails!.year
-                            self.releaseDetails.text = "Released: " + self.movieDetails!.released
-                            self.runtimeDetails.text = "Runtime: " + self.movieDetails!.runtime
-                            self.genreDetails.text = "Genre: " + self.movieDetails!.genre
-                            self.langDetails.text = "Language: " + self.movieDetails!.language
+                            self.movieDetails = MovieDetailsModel(title: title, year: year, rated: rating, released: released, runtime: runtime, genre: genre, director: director, writer: writer, actors: actors, plot: plot, language: lang, poster: image)
                             
-                            let imageUrl = self.movieDetails?.poster
-                            if let image = imageUrl {
-                                let url = URL(string: image)
-                                guard let data = try? Data(contentsOf: url!) else {
-                                    self.posterDetails.image = UIImage(named: "missing_image")
-                                    return
-                                }
-                                self.posterDetails.image = UIImage(data: data)
+                            self.imdbID = imdb
+                        }
+                        
+                        DispatchQueue.main.async {
+                            if let movieDetailModel = self.movieDetails {
+                                self.titleDetails.text = movieDetailModel.title
+                                self.plotDetails.text = movieDetailModel.plot
+                                self.ratingDetails.text = "IMDB Rating: " + movieDetailModel.rated
+                                self.actorsDetails.text = "Actors: " + movieDetailModel.actors
+                                self.directorDetails.text = "Director: " + movieDetailModel.director
+                                self.yearDetails.text = "Year: " + movieDetailModel.year
+                                self.releaseDetails.text = "Released: " + movieDetailModel.released
+                                self.runtimeDetails.text = "Runtime: " + movieDetailModel.runtime
+                                self.genreDetails.text = "Genre: " + movieDetailModel.genre
+                                self.langDetails.text = "Language: " + movieDetailModel.language
+                                
+                                let imageUrl = movieDetailModel.poster
+                                if let url = URL(string: imageUrl),
+                                   let data = try? Data(contentsOf: url) {
+                                        self.posterDetails.image = UIImage(data: data)
+                                    } else {
+                                        self.posterDetails.image = UIImage(named: "missing_image")
+                                    }
                             }
                         }
-                    }
-                    catch
-                    {
-                        print("error in JSONSerialization")
+                        
+                    } catch {
+                        print("Error in parsing data from JSON.")
                     }
                 }
             }
         }
         task.resume()
-    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showTrailer" {
-            let controller = segue.destination as! VideoViewController
+        if segue.identifier == "showTrailer",
+            let controller = segue.destination as? VideoViewController {
             controller.imdbID = imdbID
         }
     }

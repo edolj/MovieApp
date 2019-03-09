@@ -8,13 +8,13 @@
 
 import UIKit
 
-class Movie {
+class MovieModel {
 
-    let name:String
-    let year:String
-    let poster:String
+    let name: String
+    let year: String
+    let poster: String
     
-    init(name:String, year:String, poster:String) {
+    init(name: String, year: String, poster: String) {
         self.name = name
         self.year = year
         self.poster = poster
