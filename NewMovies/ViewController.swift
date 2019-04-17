@@ -29,6 +29,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         titleField.resignFirstResponder()
         startSearch()
+        
         return true
     }
     
@@ -37,17 +38,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func startSearch() {
-        if let userInput = titleField.text, userInput.count > 0 {
+        if let userInput = titleField.text,
+           userInput.count > 0 {
             tableView.searchDatabase(inputText: userInput)
         }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetails" {
-            if let indexPath = tableView.indexPathForSelectedRow,
+        if segue.identifier == "showDetails",
+            let indexPath = tableView.indexPathForSelectedRow,
                 let controller = segue.destination as? MovieDetailsViewController {
                     controller.getMovie = tableView.movies[indexPath.row]
-            }
         }
     }
 }

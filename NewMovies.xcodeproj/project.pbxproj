@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		DD89754E205D992900695C12 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89754D205D992900695C12 /* VideoViewController.swift */; };
+		DDD75A372267AAE100086769 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD75A362267AAE100086769 /* Main.storyboard */; };
+		DDD75A3A2267B14100086769 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD75A392267B14100086769 /* WebKit.framework */; };
 		DDFD61BE204462C900722103 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD61BD204462C900722103 /* AppDelegate.swift */; };
 		DDFD61C0204462C900722103 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD61BF204462C900722103 /* ViewController.swift */; };
-		DDFD61C3204462C900722103 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFD61C1204462C900722103 /* Main.storyboard */; };
 		DDFD61C5204462C900722103 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDFD61C4204462C900722103 /* Assets.xcassets */; };
 		DDFD61C8204462C900722103 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFD61C6204462C900722103 /* LaunchScreen.storyboard */; };
 		DDFD61D22044681200722103 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD61D12044681200722103 /* MovieTableViewCell.swift */; };
@@ -22,10 +23,11 @@
 
 /* Begin PBXFileReference section */
 		DD89754D205D992900695C12 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		DDD75A362267AAE100086769 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DDD75A392267B14100086769 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DDFD61BA204462C900722103 /* NewMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDFD61BD204462C900722103 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDFD61BF204462C900722103 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DDFD61C2204462C900722103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DDFD61C4204462C900722103 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDFD61C7204462C900722103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDFD61C9204462C900722103 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,17 +43,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDD75A3A2267B14100086769 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DDD75A382267B14100086769 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDD75A392267B14100086769 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DDFD61B1204462C900722103 = {
 			isa = PBXGroup;
 			children = (
 				DDFD61BC204462C900722103 /* NewMovies */,
 				DDFD61BB204462C900722103 /* Products */,
+				DDD75A382267B14100086769 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,7 +80,7 @@
 			children = (
 				DDFD61BD204462C900722103 /* AppDelegate.swift */,
 				DDFD61BF204462C900722103 /* ViewController.swift */,
-				DDFD61C1204462C900722103 /* Main.storyboard */,
+				DDD75A362267AAE100086769 /* Main.storyboard */,
 				DD89754D205D992900695C12 /* VideoViewController.swift */,
 				DDFD61D92044D34100722103 /* MovieDetailsModel.swift */,
 				DDFD61D72044C8D400722103 /* MovieDetailsViewController.swift */,
@@ -114,7 +126,7 @@
 				TargetAttributes = {
 					DDFD61B9204462C900722103 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -142,9 +154,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDD75A372267AAE100086769 /* Main.storyboard in Resources */,
 				DDFD61C8204462C900722103 /* LaunchScreen.storyboard in Resources */,
 				DDFD61C5204462C900722103 /* Assets.xcassets in Resources */,
-				DDFD61C3204462C900722103 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,14 +181,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DDFD61C1204462C900722103 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DDFD61C2204462C900722103 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DDFD61C6204462C900722103 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -310,7 +314,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.NewMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -326,7 +330,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.NewMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
