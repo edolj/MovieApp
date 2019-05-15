@@ -24,8 +24,6 @@ class MovieDetailsModel {
     let poster: String
     let imdb: String
     
-    let noValue = "N/A"
-    
     init(dictionary: NSDictionary) {
         self.title = (dictionary["Title"] as? String) ?? "N/A"
         self.plot = (dictionary["Plot"] as? String) ?? "N/A"
