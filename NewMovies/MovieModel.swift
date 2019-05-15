@@ -14,9 +14,9 @@ class MovieModel {
     let year: String
     let poster: String
     
-    init(name: String, year: String, poster: String) {
-        self.name = name
-        self.year = year
-        self.poster = poster
+    init(dictionary: NSDictionary) {
+        self.name = (dictionary["Title"] as? String) ?? ""
+        self.year = (dictionary["Year"] as? String) ?? ""
+        self.poster = (dictionary["Poster"] as? String) ?? ""
     }
 }

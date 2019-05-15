@@ -12,7 +12,7 @@ class MovieDetailsModel {
 
     let title: String
     let year: String
-    let rated: String
+    let rating: String
     let released: String
     let runtime: String
     let genre: String
@@ -22,20 +22,24 @@ class MovieDetailsModel {
     let plot: String
     let language: String
     let poster: String
+    let imdb: String
     
-    init(title: String, year: String, rated: String, released: String, runtime: String, genre: String,
-         director: String, writer: String, actors: String, plot: String, language: String, poster: String) {
-        self.title = title
-        self.year = year
-        self.rated = rated
-        self.released = released
-        self.runtime = runtime
-        self.genre = genre
-        self.director = director
-        self.writer = writer
-        self.actors = actors
-        self.plot = plot
-        self.language = language
-        self.poster = poster
+    let noValue = "N/A"
+    
+    init(dictionary: NSDictionary) {
+        self.title = (dictionary["Title"] as? String) ?? "N/A"
+        self.plot = (dictionary["Plot"] as? String) ?? "N/A"
+        self.rating = (dictionary["imdbRating"] as? String) ?? "N/A"
+        self.year = (dictionary["Year"] as? String) ?? "N/A"
+        self.released = (dictionary["Released"] as? String) ?? "N/A"
+        self.runtime = (dictionary["Runtime"] as? String) ?? "N/A"
+        self.genre = (dictionary["Genre"] as? String) ?? "N/A"
+        self.director = (dictionary["Director"] as? String) ?? "N/A"
+        self.writer = (dictionary["Writer"] as? String) ?? "N/A"
+        self.actors = (dictionary["Actors"] as? String) ?? "N/A"
+        self.language = (dictionary["Language"] as? String) ?? "N/A"
+        self.poster = (dictionary["Poster"] as? String) ?? "N/A"
+        self.imdb = (dictionary["imdbID"] as? String) ?? "N/A"
     }
+
 }

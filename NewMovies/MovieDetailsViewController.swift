@@ -58,31 +58,17 @@ class MovieDetailsViewController: UIViewController {
                 if let content = data {
                     do {
                         if let jsonFile = try JSONSerialization.jsonObject(with: content,
-                            options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary,
-                            let title = jsonFile["Title"] as? String,
-                            let plot = jsonFile["Plot"] as? String,
-                            let rating = jsonFile["imdbRating"] as? String,
-                            let year = jsonFile["Year"] as? String,
-                            let released = jsonFile["Released"] as? String,
-                            let runtime = jsonFile["Runtime"] as? String,
-                            let genre = jsonFile["Genre"] as? String,
-                            let director = jsonFile["Director"] as? String,
-                            let writer = jsonFile["Writer"] as? String,
-                            let actors = jsonFile["Actors"] as? String,
-                            let lang = jsonFile["Language"] as? String,
-                            let image = jsonFile["Poster"] as? String,
-                            let imdb = jsonFile["imdbID"] as? String {
+                            options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
                         
-                            self.movieDetails = MovieDetailsModel(title: title, year: year, rated: rating, released: released, runtime: runtime, genre: genre, director: director, writer: writer, actors: actors, plot: plot, language: lang, poster: image)
-                            
-                            self.imdbID = imdb
+                            self.movieDetails = MovieDetailsModel(dictionary: jsonFile)
+                            self.imdbID = self.movieDetails?.imdb
                         }
                         
                         DispatchQueue.main.async {
                             if let movieDetailModel = self.movieDetails {
                                 self.titleDetails.text = movieDetailModel.title
                                 self.plotDetails.text = movieDetailModel.plot
-                                self.ratingDetails.text = "IMDB Rating: " + movieDetailModel.rated
+                                self.ratingDetails.text = "IMDB Rating: " + movieDetailModel.rating
                                 self.actorsDetails.text = "Actors: " + movieDetailModel.actors
                                 self.directorDetails.text = "Director: " + movieDetailModel.director
                                 self.yearDetails.text = "Year: " + movieDetailModel.year

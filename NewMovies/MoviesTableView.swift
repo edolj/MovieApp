@@ -45,16 +45,7 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
                             if let jsonFile = try JSONSerialization.jsonObject(with: content,
                                 options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary,
                                 let search = jsonFile["Search"] as? [NSDictionary] {
-                                for result in search {
-                                    if let movieTitle = result["Title"] as? String,
-                                        let movieYear = result["Year"] as? String,
-                                        let movieposter = result["Poster"] as? String {
-                                        
-                                        self.movies.append(MovieModel(name: movieTitle,
-                                                                      year: movieYear,
-                                                                      poster: movieposter))
-                                    }
-                                }
+                                    self.movies = search.map({ MovieModel(dictionary: $0) })
                             }
                         } catch {
                             print("Error in parsing data from JSON.")
@@ -84,16 +75,8 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
         }
         
-        let row = movies[indexPath.row]
-        
-        if let urlToPoster = URL(string: row.poster),
-            let data = try? Data(contentsOf: urlToPoster) {
-            cell.moviePoster.image = UIImage(data: data)
-        } else {
-            cell.moviePoster.image = UIImage(named: "missing_image")
-        }
-        
-        cell.movieName.text = row.name + " ( " + row.year + " ) "
+        let viewModel = movies[indexPath.row]
+        cell.setup(viewModel: viewModel)
         
         return cell
     }

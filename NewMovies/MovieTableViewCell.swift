@@ -18,4 +18,15 @@ class MovieTableViewCell: UITableViewCell {
         
         movieName.textColor = .white
     }
+    
+    func setup(viewModel: MovieModel) {
+        if let urlToPoster = URL(string: viewModel.poster),
+           let data = try? Data(contentsOf: urlToPoster) {
+            moviePoster.image = UIImage(data: data)
+        } else {
+            moviePoster.image = UIImage(named: "missing_image")
+        }
+        
+        movieName.text = viewModel.name + " ( " + viewModel.year + " ) "
+    }
 }

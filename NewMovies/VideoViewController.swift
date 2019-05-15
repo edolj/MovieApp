@@ -20,7 +20,7 @@ class VideoViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.webview.addSubview(self.activityView)
+        self.webview.addSubview(activityView)
         self.webview.navigationDelegate = self
         
         self.activityView.hidesWhenStopped = true
