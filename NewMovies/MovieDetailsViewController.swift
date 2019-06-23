@@ -35,23 +35,17 @@ class MovieDetailsViewController: UIViewController {
         trailerButton.backgroundColor = .yellow
         trailerButton.layer.cornerRadius = 5
         
-        loadMovieDetails()
+        if let movie = getMovie {
+            loadMovieDetails(movieName: movie.name)
+        }
     }
     
-    public func loadMovieDetails() {
-        guard let movie = getMovie else {
-            return
-        }
-
-        let movieName = movie.name.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-        let urlApi = "http://www.omdbapi.com/?apikey=482d09e9&t="+movieName
+    public func loadMovieDetails(movieName: String) {
+        let movieTitle = movieName.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
+        let urlApi = "http://www.omdbapi.com/?apikey=482d09e9&t=" + movieTitle
         
-        guard let url = URL(string: urlApi) else {
-            titleDetails.text = "Movie NOT found in our database! Return back."
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        if let url = URL(string: urlApi) {
+           let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 print("Error with URLSession.")
             } else {
@@ -92,8 +86,9 @@ class MovieDetailsViewController: UIViewController {
                     }
                 }
             }
-        }
+         }
         task.resume()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

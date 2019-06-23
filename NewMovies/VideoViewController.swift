@@ -20,20 +20,18 @@ class VideoViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.webview.addSubview(activityView)
-        self.webview.navigationDelegate = self
+        webview.addSubview(activityView)
+        webview.navigationDelegate = self
         
-        self.activityView.hidesWhenStopped = true
-        self.activityView.startAnimating()
+        activityView.hidesWhenStopped = true
+        activityView.startAnimating()
         
-        loadTrailerVideo()
+        if let imdbRating = imdbID {
+            loadTrailerVideo(imdbRating: imdbRating)
+        }
     }
     
-    func loadTrailerVideo() {
-        guard let imdbRating = imdbID else {
-            return
-        }
-        
+    func loadTrailerVideo(imdbRating: String) {
         let urlApi = "http://api.themoviedb.org/3/movie/\(imdbRating)?api_key=1fe1b7a660e0e0e7cde9c78d327c03e8"
         if let url = URL(string: urlApi) {
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
