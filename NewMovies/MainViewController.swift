@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  NewMovies
 //
 //  Created by Edo Ljubijankic on 26/02/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class MainViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: MoviesTableView!
     @IBOutlet weak var titleField: UITextField!
@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         tableView.setup()
+        tableView.protocolDelegate = self
         
         titleField.delegate = self
         titleField.becomeFirstResponder()
@@ -44,11 +45,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetails",
-            let indexPath = tableView.indexPathForSelectedRow,
-                let controller = segue.destination as? MovieDetailsViewController {
-                    controller.getMovie = tableView.movies[indexPath.row]
+}
+
+extension MainViewController: SelecetedMovieDelegate {
+    func didSelectItem(movie: MovieModel) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let detailVC = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController")
+            as? MovieDetailsViewController {
+            detailVC.getMovie = movie
+            self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
 }

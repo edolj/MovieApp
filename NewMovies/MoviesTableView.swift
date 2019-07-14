@@ -8,15 +8,22 @@
 
 import UIKit
 
+protocol SelecetedMovieDelegate: class {
+    func didSelectItem(movie: MovieModel)
+}
+
 class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var movie: MovieModel?
     var movies: [MovieModel] = []
+    weak var protocolDelegate: SelecetedMovieDelegate?
     
     func setup() {
         delegate = self
         dataSource = self
         backgroundColor = UIColor.init(red: 31/255, green: 33/255, blue: 36/255, alpha: 1.0)
+        
+        register(UINib.init(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
     }
     
     func searchDatabase(inputText: String) {
@@ -69,19 +76,25 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         return movies.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = self.dequeueReusableCell(withIdentifier: "idCell", for: indexPath) as? MovieTableViewCell
-            else {
-                return UITableViewCell()
+        let cell = self.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath)
+
+        if let cell = cell as? MovieTableViewCell {
+            let viewModel = movies[indexPath.row]
+            cell.setup(viewModel: viewModel)
         }
-        
-        let viewModel = movies[indexPath.row]
-        cell.setup(viewModel: viewModel)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.deselectRow(at: indexPath, animated: true)
+        
+        let viewModel = movies[indexPath.row]
+        protocolDelegate?.didSelectItem(movie: viewModel)
     }
 }
