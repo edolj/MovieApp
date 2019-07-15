@@ -91,10 +91,12 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showTrailer",
-            let controller = segue.destination as? VideoViewController {
+    @IBAction func showTrailerButtonPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "VideoViewController")
+            as? VideoViewController {
             controller.imdbID = imdbID
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
 

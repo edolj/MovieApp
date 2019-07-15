@@ -110,7 +110,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="VNo-LA-9DD" kind="show" identifier="showTrailer" id="bVJ-Ds-wfw"/>
+                                                    <action selector="showTrailerButtonPressed:" destination="oI0-iU-pdF" eventType="touchUpInside" id="1a7-gP-VwN"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjV-UO-aKy">
@@ -227,7 +227,7 @@
         <!--Video View Controller-->
         <scene sceneID="mdK-zr-H6Z">
             <objects>
-                <viewController id="VNo-LA-9DD" customClass="VideoViewController" customModule="NewMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VideoViewController" id="VNo-LA-9DD" customClass="VideoViewController" customModule="NewMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xmq-uU-8gc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -272,6 +272,7 @@
         <!--Navigation Controller-->
         <scene sceneID="eXv-4M-FP3">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wdr-Rc-qGy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vqC-RZ-QNO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wNr-xC-mAe">
@@ -287,7 +288,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="StF-r4-4Ra"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wdr-Rc-qGy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-534" y="118"/>
         </scene>
