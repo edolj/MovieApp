@@ -20,6 +20,8 @@ class VideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Trailer"
+        
         webview.addSubview(activityView)
         webview.navigationDelegate = self
         
@@ -58,6 +60,7 @@ class VideoViewController: UIViewController {
                                                 options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary,
                                                 let collect = jsonFile2.value(forKey: "results"),
                                                     let stringArray = collect as? [NSDictionary],
+                                                    stringArray.count != 0,
                                                     let keyID = stringArray[0]["key"] as? String {
                                                         self.keyID = keyID
                                                     } else {

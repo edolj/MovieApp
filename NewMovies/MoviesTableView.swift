@@ -21,7 +21,6 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func setup() {
         delegate = self
         dataSource = self
-        backgroundColor = UIColor.init(red: 31/255, green: 33/255, blue: 36/255, alpha: 1.0)
         
         register(UINib.init(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
     }

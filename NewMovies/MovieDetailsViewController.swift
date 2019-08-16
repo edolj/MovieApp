@@ -10,7 +10,6 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
-    @IBOutlet weak var titleDetails: UILabel!
     @IBOutlet weak var posterDetails: UIImageView!
     @IBOutlet weak var ratingDetails: UILabel!
     @IBOutlet weak var actorsDetails: UILabel!
@@ -60,7 +59,7 @@ class MovieDetailsViewController: UIViewController {
                         
                         DispatchQueue.main.async {
                             if let movieDetailModel = self.movieDetails {
-                                self.titleDetails.text = movieDetailModel.title
+                                self.navigationItem.title = movieDetailModel.title
                                 self.plotDetails.text = movieDetailModel.plot
                                 self.ratingDetails.text = "IMDB Rating: " + movieDetailModel.rating
                                 self.actorsDetails.text = "Actors: " + movieDetailModel.actors

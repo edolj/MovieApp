@@ -82,8 +82,8 @@
 			children = (
 				DDFD61BD204462C900722103 /* AppDelegate.swift */,
 				DDFD61BF204462C900722103 /* MainViewController.swift */,
-				DDD75A362267AAE100086769 /* Main.storyboard */,
 				DD89754D205D992900695C12 /* VideoViewController.swift */,
+				DDD75A362267AAE100086769 /* Main.storyboard */,
 				DDFD61D72044C8D400722103 /* MovieDetailsViewController.swift */,
 				DDFD61D92044D34100722103 /* MovieDetailsModel.swift */,
 				DDFD61D520446C8A00722103 /* MovieModel.swift */,

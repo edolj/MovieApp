@@ -17,6 +17,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Search"
+        
         tableView.setup()
         tableView.protocolDelegate = self
         
