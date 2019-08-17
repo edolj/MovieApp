@@ -25,19 +25,20 @@ class VideoViewController: UIViewController {
         webview.addSubview(activityView)
         webview.navigationDelegate = self
         
-        activityView.hidesWhenStopped = true
-        activityView.startAnimating()
-        
         if let imdbID = imdbID {
             let urlApi = "http://api.themoviedb.org/3/movie/\(imdbID)?api_key=1fe1b7a660e0e0e7cde9c78d327c03e8"
             let url = URL(string: urlApi)
             if let url = url {
                 loadTrailerVideo(url: url)
             }
+        } else {
+            showAlert()
         }
     }
     
     func loadTrailerVideo(url: URL) {
+        activityView.startAnimating()
+        
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 print("Error with URLSession.")
@@ -92,15 +93,22 @@ class VideoViewController: UIViewController {
                     self.webview.load(request)
                 }
             else {
-                let alert = UIAlertController(title: "Alert", message: "No trailer found.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Return", style: UIAlertAction.Style.cancel, handler: { _ in
-                    self.navigationController?.popViewController(animated: true)
-                }))
-                self.present(alert, animated: true, completion: nil)
+                self.showAlert()
             }
         }
     }
 
+    func showAlert() {
+        let alert = UIAlertController(title: "Alert", message: "No trailer found.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Return", style: UIAlertAction.Style.cancel, handler: { _ in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    deinit {
+        print("--class VideoViewController--")
+    }
 }
 
 extension VideoViewController: WKNavigationDelegate {

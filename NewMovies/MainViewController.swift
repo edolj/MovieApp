@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITextFieldDelegate {
+class MainViewController: UIViewController {
     
     @IBOutlet weak var tableView: MoviesTableView!
     @IBOutlet weak var titleField: UITextField!
@@ -29,13 +29,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         findButton.layer.cornerRadius = 5
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        titleField.resignFirstResponder()
-        startSearch()
-        
-        return true
-    }
-    
     @IBAction func findMovie(_ sender: UIButton) {
         startSearch()
     }
@@ -47,16 +40,26 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    deinit {
+        print("--class MainViewController--")
+    }
 }
 
 extension MainViewController: SelecetedMovieDelegate {
-    func didSelectItem(movie: MovieModel) {
+    func didSelectItem(movieModel: MovieModel) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let detailVC = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController")
             as? MovieDetailsViewController {
-            detailVC.getMovie = movie
+            detailVC.movieModel = movieModel
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
 }
 
+extension MainViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        titleField.resignFirstResponder()
+        startSearch()
+        return true
+    }
+}

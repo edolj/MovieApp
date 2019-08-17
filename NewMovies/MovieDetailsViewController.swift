@@ -22,8 +22,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var langDetails: UILabel!
     @IBOutlet weak var trailerButton: UIButton!
     
-    var getMovie: MovieModel?
-    var movieDetails: MovieDetailsModel?
+    var movieModel: MovieModel?
+    var movieDetailsModel: MovieDetailsModel?
     var imdbID: String?
     
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class MovieDetailsViewController: UIViewController {
         trailerButton.backgroundColor = .yellow
         trailerButton.layer.cornerRadius = 5
         
-        if let movie = getMovie {
+        if let movie = movieModel {
             loadMovieDetails(movieName: movie.name)
         }
     }
@@ -53,12 +53,12 @@ class MovieDetailsViewController: UIViewController {
                         if let jsonFile = try JSONSerialization.jsonObject(with: content,
                             options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
                         
-                            self.movieDetails = MovieDetailsModel(dictionary: jsonFile)
-                            self.imdbID = self.movieDetails?.imdb
+                            self.movieDetailsModel = MovieDetailsModel(dictionary: jsonFile)
+                            self.imdbID = self.movieDetailsModel?.imdb
                         }
                         
                         DispatchQueue.main.async {
-                            if let movieDetailModel = self.movieDetails {
+                            if let movieDetailModel = self.movieDetailsModel {
                                 self.navigationItem.title = movieDetailModel.title
                                 self.plotDetails.text = movieDetailModel.plot
                                 self.ratingDetails.text = "IMDB Rating: " + movieDetailModel.rating
@@ -99,4 +99,7 @@ class MovieDetailsViewController: UIViewController {
         }
     }
 
+    deinit {
+        print("--class MovieDetailsViewController--")
+    }
  }

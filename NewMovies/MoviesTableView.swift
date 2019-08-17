@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SelecetedMovieDelegate: class {
-    func didSelectItem(movie: MovieModel)
+    func didSelectItem(movieModel: MovieModel)
 }
 
 class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
@@ -94,6 +94,6 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         self.deselectRow(at: indexPath, animated: true)
         
         let viewModel = movies[indexPath.row]
-        protocolDelegate?.didSelectItem(movie: viewModel)
+        protocolDelegate?.didSelectItem(movieModel: viewModel)
     }
 }
