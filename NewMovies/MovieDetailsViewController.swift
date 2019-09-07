@@ -31,8 +31,8 @@ class MovieDetailsViewController: UIViewController {
         
         plotDetails.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         
-        trailerButton.backgroundColor = .yellow
-        trailerButton.layer.cornerRadius = 5
+        trailerButton.backgroundColor = .green
+        trailerButton.layer.cornerRadius = 30
         
         if let movie = movieModel {
             loadMovieDetails(movieName: movie.name)

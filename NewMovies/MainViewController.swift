@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
         titleField.delegate = self
         titleField.becomeFirstResponder()
         
-        findButton.backgroundColor = .yellow
+        findButton.backgroundColor = .green
         findButton.layer.cornerRadius = 5
     }
     
