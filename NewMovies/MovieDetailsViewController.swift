@@ -37,6 +37,8 @@ class MovieDetailsViewController: UIViewController {
         if let movie = movieModel {
             loadMovieDetails(movieName: movie.name)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(isCaptured), name: UIScreen.capturedDidChangeNotification, object: nil)
     }
     
     public func loadMovieDetails(movieName: String) {
@@ -98,8 +100,17 @@ class MovieDetailsViewController: UIViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
+    
+    // possible future implemetation
+    @objc func isCaptured(notification: Notification) {
+        if UIScreen.main.isCaptured == true {
+            print("User is screen recording...")
+            // example: hide current view
+        }
+    }
 
     deinit {
+        NotificationCenter.default.removeObserver(self)
         print("--class MovieDetailsViewController--")
     }
  }
