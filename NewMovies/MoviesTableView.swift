@@ -21,6 +21,7 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func setup() {
         delegate = self
         dataSource = self
+        separatorColor = .white
         
         register(UINib.init(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
     }
