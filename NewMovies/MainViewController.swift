@@ -51,6 +51,7 @@ extension MainViewController: SelecetedMovieDelegate {
         if let detailVC = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController")
             as? MovieDetailsViewController {
             detailVC.movieModel = movieModel
+            self.view.window?.endEditing(true)
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }

@@ -14,7 +14,6 @@ protocol SelecetedMovieDelegate: class {
 
 class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
-    var movie: MovieModel?
     var movies: [MovieModel] = []
     weak var protocolDelegate: SelecetedMovieDelegate?
     
@@ -66,10 +65,6 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.reloadData()
         }
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
