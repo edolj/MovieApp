@@ -42,7 +42,7 @@ class MoviesTableViewTests: XCTestCase {
             }
         }
         dataTask.resume()
-        wait(for: [promise], timeout: 5)
+        wait(for: [promise], timeout: 10)
         
         XCTAssertEqual(tableView.movies.count, 10)
     }
