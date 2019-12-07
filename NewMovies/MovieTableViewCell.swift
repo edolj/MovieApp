@@ -17,6 +17,7 @@ class MovieTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         movieName.textColor = .white
+        backgroundColor = .clear
     }
     
     func setup(viewModel: MovieModel) {

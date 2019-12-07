@@ -20,7 +20,6 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var genreDetails: UILabel!
     @IBOutlet weak var releaseDetails: UILabel!
     @IBOutlet weak var langDetails: UILabel!
-    @IBOutlet weak var trailerButton: UIButton!
     
     var movieModel: MovieModel?
     var movieDetailsModel: MovieDetailsModel?
@@ -29,10 +28,8 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.init(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
         plotDetails.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
-        
-        trailerButton.backgroundColor = .green
-        trailerButton.layer.cornerRadius = 30
         
         if let movie = movieModel {
             loadMovieDetails(movieName: movie.name)
