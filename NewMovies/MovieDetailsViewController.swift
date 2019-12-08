@@ -11,14 +11,11 @@ import UIKit
 class MovieDetailsViewController: UIViewController {
 
     @IBOutlet weak var posterDetails: UIImageView!
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var ratingDetails: UILabel!
     @IBOutlet weak var actorsDetails: UILabel!
     @IBOutlet weak var directorDetails: UILabel!
     @IBOutlet weak var plotDetails: UITextView!
-    @IBOutlet weak var runtimeDetails: UILabel!
-    @IBOutlet weak var yearDetails: UILabel!
-    @IBOutlet weak var genreDetails: UILabel!
-    @IBOutlet weak var releaseDetails: UILabel!
     @IBOutlet weak var langDetails: UILabel!
     
     var movieModel: MovieModel?
@@ -51,29 +48,69 @@ class MovieDetailsViewController: UIViewController {
                             options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
                         
                             self.movieDetailsModel = MovieDetailsModel(dictionary: jsonFile)
-                            self.imdbID = self.movieDetailsModel?.imdb
+                            self.imdbID = self.movieDetailsModel?.imdbID
                         }
                         
                         DispatchQueue.main.async {
-                            if let movieDetailModel = self.movieDetailsModel {
-                                self.navigationItem.title = movieDetailModel.title
-                                self.plotDetails.text = movieDetailModel.plot
-                                self.ratingDetails.text = "IMDB Rating: " + movieDetailModel.rating
-                                self.actorsDetails.text = "Actors: " + movieDetailModel.actors
-                                self.directorDetails.text = "Director: " + movieDetailModel.director
-                                self.yearDetails.text = "Year: " + movieDetailModel.year
-                                self.releaseDetails.text = "Released: " + movieDetailModel.released
-                                self.runtimeDetails.text = "Runtime: " + movieDetailModel.runtime
-                                self.genreDetails.text = "Genre: " + movieDetailModel.genre
-                                self.langDetails.text = "Language: " + movieDetailModel.language
+                            if let viewModel = self.movieDetailsModel {
+                                self.navigationItem.title = viewModel.title
                                 
-                                let imageUrl = movieDetailModel.poster
+                                var infoText: [String] = []
+                                let separator = " | "
+                                if let runtime = viewModel.runtime {
+                                    infoText.append(runtime)
+                                    infoText.append(separator)
+                                }
+                                
+                                if let genre = viewModel.genre {
+                                    infoText.append(genre)
+                                    infoText.append(separator)
+                                }
+                                
+                                if let year = viewModel.year {
+                                    infoText.append(year)
+                                }
+                                
+                                if infoText.count == 0 {
+                                    self.infoLabel.isHidden = true
+                                } else {
+                                    self.infoLabel.text = infoText.joined()
+                                }
+                                
+                                if let actors = viewModel.actors {
+                                    self.actorsDetails.text = "Actors: " + actors
+                                } else {
+                                    self.actorsDetails.isHidden = true
+                                }
+                                
+                                if let director = viewModel.director {
+                                    self.directorDetails.text = "Director: " + director
+                                } else {
+                                    self.directorDetails.isHidden = true
+                                }
+                                
+                                if let lang = viewModel.language {
+                                    self.langDetails.text = "Language: " + lang
+                                } else {
+                                    self.langDetails.isHidden = true
+                                }
+                                
+                                if let imdbRating = viewModel.rating {
+                                    self.ratingDetails.text = "IMDB Rating: " + imdbRating
+                                } else {
+                                    self.ratingDetails.isHidden = true
+                                }
+                                
+                                self.plotDetails.text = viewModel.plot
+                                
+                                let imageUrl = viewModel.poster ?? "missing_image"
                                 if let url = URL(string: imageUrl),
                                    let data = try? Data(contentsOf: url) {
-                                        self.posterDetails.image = UIImage(data: data)
-                                    } else {
-                                        self.posterDetails.image = UIImage(named: "missing_image")
-                                    }
+                                    self.posterDetails.image = UIImage(data: data)
+                                } else {
+                                    self.posterDetails.image = UIImage(named: "missing_image")
+                                }
+                                
                             }
                         }
                         

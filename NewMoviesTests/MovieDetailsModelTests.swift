@@ -29,18 +29,16 @@ class MovieDetailsModelTests: XCTestCase {
         let viewModel = MovieDetailsModel(dictionary: dictionary)
         XCTAssertEqual(viewModel.title, "Avengers")
         XCTAssertEqual(viewModel.year, "2012")
-        XCTAssertEqual(viewModel.director, "N/A")
-        XCTAssertEqual(viewModel.actors, "N/A")
-        XCTAssertEqual(viewModel.genre, "N/A")
-        XCTAssertEqual(viewModel.imdb, "N/A")
+        XCTAssertEqual(viewModel.plot, "Heroes saving world.")
+        XCTAssertEqual(viewModel.rating, "8.0")
     }
 
     func testViewModel2() {
         let dictionary: NSDictionary = [:]
         
         let viewModel = MovieDetailsModel(dictionary: dictionary)
-        XCTAssertEqual(viewModel.genre, "N/A")
-        XCTAssertEqual(viewModel.imdb, "N/A")
+        XCTAssertEqual(viewModel.year, nil)
+        XCTAssertEqual(viewModel.genre, nil)
     }
     
 }

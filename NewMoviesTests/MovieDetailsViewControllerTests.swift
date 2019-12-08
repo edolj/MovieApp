@@ -28,7 +28,7 @@ class MovieDetailsViewControllerTests: XCTestCase {
     func testLoadData() {
         vc.loadMovieDetails(movieName: "batman")
         sleep(5) // wait for main thread while loading data
-        XCTAssertEqual(vc.imdbID, vc.movieDetailsModel?.imdb)
+        XCTAssertEqual(vc.imdbID, vc.movieDetailsModel?.imdbID)
     }
 
 }
