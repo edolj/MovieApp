@@ -28,7 +28,9 @@ class MovieDetailsViewController: UIViewController {
         
         view.backgroundColor = UIColor.init(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
         plotDetails.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
+        
         shareButton.setTitle("share".localized, for: .normal)
+        shareButton.addTarget(self, action: #selector(shareData), for: .touchUpInside)
         
         if let movie = movieModel {
             loadMovieDetails(movieName: movie.name)
@@ -124,6 +126,18 @@ class MovieDetailsViewController: UIViewController {
          }
         task.resume()
         }
+    }
+    
+    @objc func shareData() {
+        guard let plot = movieDetailsModel?.plot,
+            let title = movieModel?.name else {
+                return
+        }
+        
+        let items = [plot]
+        let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        activityController.setValue(title, forKey: "Subject")
+        present(activityController, animated: true)
     }
     
     @IBAction func showTrailerButtonPressed(_ sender: Any) {
