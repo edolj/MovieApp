@@ -10,9 +10,10 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
+    @IBOutlet weak var shareButton: TextUnderImageButton!
     @IBOutlet weak var posterDetails: UIImageView!
     @IBOutlet weak var infoLabel: UILabel!
-    @IBOutlet weak var ratingDetails: UILabel!
+    @IBOutlet weak var ratingDetails: UIButton!
     @IBOutlet weak var actorsDetails: UILabel!
     @IBOutlet weak var directorDetails: UILabel!
     @IBOutlet weak var plotDetails: UITextView!
@@ -27,6 +28,7 @@ class MovieDetailsViewController: UIViewController {
         
         view.backgroundColor = UIColor.init(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
         plotDetails.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
+        shareButton.setTitle("share".localized, for: .normal)
         
         if let movie = movieModel {
             loadMovieDetails(movieName: movie.name)
@@ -96,7 +98,7 @@ class MovieDetailsViewController: UIViewController {
                                 }
                                 
                                 if let imdbRating = viewModel.rating {
-                                    self.ratingDetails.text = "rating_label".localized + imdbRating
+                                    self.ratingDetails.setTitle(imdbRating, for: .normal)
                                 } else {
                                     self.ratingDetails.isHidden = true
                                 }

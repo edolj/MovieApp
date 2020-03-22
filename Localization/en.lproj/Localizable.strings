@@ -9,4 +9,4 @@
 "actors_label"   = "Actors: ";
 "director_label" = "Director: ";
 "language_label" = "Language: ";
-"rating_label"   = "IMDB Rating: ";
+"share"          = "Share";

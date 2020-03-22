@@ -5,8 +5,8 @@
   Created by Edo on 22/03/2020.
   Copyright © 2020 Edo Ljubijankic. All rights reserved.
 */
-"search_title" = "Iskanje";
+"search_title"   = "Iskanje";
 "actors_label"   = "Igralci: ";
 "director_label" = "Direktor: ";
 "language_label" = "Jeziki: ";
-"rating_label"   = "IMDB ocena: ";
+"share"          = "Deli";
