@@ -11,31 +11,29 @@ import UIKit
 class MainViewController: UIViewController {
     
     @IBOutlet weak var tableView: MoviesTableView!
-    @IBOutlet weak var titleField: UITextField!
+    @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var findButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Search"
+        navigationItem.title = "search_title".localized
         view.backgroundColor = UIColor.init(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
         
         tableView.setup()
         tableView.protocolDelegate = self
         
-        titleField.delegate = self
-        titleField.becomeFirstResponder()
+        searchField.delegate = self
+        searchField.becomeFirstResponder()
         
+        findButton.setTitle("search_title".localized, for: .normal)
+        findButton.addTarget(self, action: #selector(startSearch), for: .touchUpInside)
         findButton.backgroundColor = .green
         findButton.layer.cornerRadius = 5
     }
     
-    @IBAction func findMovie(_ sender: UIButton) {
-        startSearch()
-    }
-    
-    func startSearch() {
-        if let userInput = titleField.text,
+    @objc func startSearch() {
+        if let userInput = searchField.text,
            userInput.count > 0 {
             tableView.searchDatabase(inputText: userInput)
         }
@@ -60,7 +58,7 @@ extension MainViewController: SelecetedMovieDelegate {
 
 extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        titleField.resignFirstResponder()
+        searchField.resignFirstResponder()
         startSearch()
         return true
     }

@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  NewMovies
+
+  Created by Edo on 22/03/2020.
+  Copyright © 2020 Edo Ljubijankic. All rights reserved.
+*/
+"search_title"   = "Search";
+"actors_label"   = "Actors: ";
+"director_label" = "Director: ";
+"language_label" = "Language: ";
+"rating_label"   = "IMDB Rating: ";

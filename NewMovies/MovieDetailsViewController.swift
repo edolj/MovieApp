@@ -78,25 +78,25 @@ class MovieDetailsViewController: UIViewController {
                                 }
                                 
                                 if let actors = viewModel.actors {
-                                    self.actorsDetails.text = "Actors: " + actors
+                                    self.actorsDetails.text = "actors_label".localized + actors
                                 } else {
                                     self.actorsDetails.isHidden = true
                                 }
                                 
                                 if let director = viewModel.director {
-                                    self.directorDetails.text = "Director: " + director
+                                    self.directorDetails.text = "director_label".localized + director
                                 } else {
                                     self.directorDetails.isHidden = true
                                 }
                                 
                                 if let lang = viewModel.language {
-                                    self.langDetails.text = "Language: " + lang
+                                    self.langDetails.text = "language_label".localized + lang
                                 } else {
                                     self.langDetails.isHidden = true
                                 }
                                 
                                 if let imdbRating = viewModel.rating {
-                                    self.ratingDetails.text = "IMDB Rating: " + imdbRating
+                                    self.ratingDetails.text = "rating_label".localized + imdbRating
                                 } else {
                                     self.ratingDetails.isHidden = true
                                 }

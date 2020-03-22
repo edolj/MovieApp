@@ -26,8 +26,8 @@ class MainViewControllerTests: XCTestCase {
     }
 
     func testSearch() {
-        vc.titleField.text = "batman"
-        XCTAssertEqual(vc.titleField.text, "batman")
+        vc.searchField.text = "batman"
+        XCTAssertEqual(vc.searchField.text, "batman")
 
         vc.startSearch()
         sleep(5) // wait for loading table with data

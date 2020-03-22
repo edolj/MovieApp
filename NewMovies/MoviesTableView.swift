@@ -72,10 +72,6 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         return movies.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath)
 
