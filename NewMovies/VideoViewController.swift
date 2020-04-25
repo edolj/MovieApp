@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import WebKit
+import YoutubePlayer_in_WKWebView
 
 class VideoViewController: UIViewController {
     
-    @IBOutlet weak var webview: WKWebView!
-    @IBOutlet weak var activityView: UIActivityIndicatorView!
+    @IBOutlet weak var playerView: WKYTPlayerView!
+    @IBOutlet weak var loadingLabel: UILabel!
     
     var imdbID: String?
     var keyID: String?
@@ -20,10 +20,11 @@ class VideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        playerView.isHidden = true
+        playerView.backgroundColor = .clear
+        loadingLabel.text = "Loading..."
+        loadingLabel.textColor = .white
         view.backgroundColor = UIColor.init(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
-        
-        webview.addSubview(activityView)
-        webview.navigationDelegate = self
         
         if let imdbID = imdbID {
             let urlApi = String(format: "http://api.themoviedb.org/3/movie/%@?api_key=%@", imdbID, ApiKey.tmdb)
@@ -40,7 +41,6 @@ class VideoViewController: UIViewController {
             return
         }
         
-        activityView.startAnimating()
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 print("Error with URLSession.")
@@ -60,15 +60,21 @@ class VideoViewController: UIViewController {
         }
         task.resume()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            if let key = self.keyID,
-                let yturl = URL(string: "https://www.youtube.com/watch?v=\(key)") {
-                    let request = URLRequest(url: yturl)
-                    self.webview.load(request)
-                }
-            else {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if let key = self.keyID {
+                self.playerView.load(withVideoId: key)
+                self.autoplayVideo()
+            } else {
                 self.showAlert()
             }
+        }
+    }
+    
+    func autoplayVideo() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.loadingLabel.isHidden = true
+            self.playerView.isHidden = false
+            self.playerView.playVideo()
         }
     }
     
@@ -110,15 +116,5 @@ class VideoViewController: UIViewController {
     
     deinit {
         print("--class VideoViewController--")
-    }
-}
-
-extension VideoViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        activityView.stopAnimating()
-    }
-    
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        activityView.stopAnimating()
     }
 }

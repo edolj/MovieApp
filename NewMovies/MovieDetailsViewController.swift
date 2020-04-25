@@ -150,7 +150,7 @@ class MovieDetailsViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "VideoViewController") as? VideoViewController {
             controller.imdbID = imdbID
-            navigationController?.pushViewController(controller, animated: true)
+            navigationController?.present(controller, animated: true)
         }
     }
 

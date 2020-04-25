@@ -208,36 +208,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLe-TO-wvi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="sbv-2c-Iyc">
-                                <rect key="frame" x="157.5" y="303.5" width="60" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHH-Bu-SOL" customClass="WKYTPlayerView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="HNj-nb-WIX"/>
-                                    <constraint firstAttribute="height" constant="60" id="ysb-sT-lF8"/>
+                                    <constraint firstAttribute="width" secondItem="NHH-Bu-SOL" secondAttribute="height" multiplier="15:9" id="jOZ-Hs-bl3"/>
                                 </constraints>
-                            </activityIndicatorView>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvu-Gf-y5M">
+                                <rect key="frame" x="87.5" y="324" width="200" height="19.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="xkm-XH-0Po"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="sbv-2c-Iyc" firstAttribute="centerX" secondItem="tCd-G9-dBY" secondAttribute="centerX" id="3AM-VJ-WEq"/>
-                            <constraint firstItem="VLe-TO-wvi" firstAttribute="trailing" secondItem="tCd-G9-dBY" secondAttribute="trailing" id="5FG-DG-cuY"/>
-                            <constraint firstItem="sbv-2c-Iyc" firstAttribute="centerY" secondItem="tCd-G9-dBY" secondAttribute="centerY" id="SE1-30-0Gq"/>
-                            <constraint firstItem="tCd-G9-dBY" firstAttribute="bottom" secondItem="VLe-TO-wvi" secondAttribute="bottom" id="XBc-pc-DPr"/>
-                            <constraint firstItem="VLe-TO-wvi" firstAttribute="top" secondItem="tCd-G9-dBY" secondAttribute="top" id="nFa-Ds-w4K"/>
-                            <constraint firstItem="VLe-TO-wvi" firstAttribute="leading" secondItem="tCd-G9-dBY" secondAttribute="leading" id="oUm-fZ-0ly"/>
-                            <constraint firstItem="sbv-2c-Iyc" firstAttribute="centerX" secondItem="VLe-TO-wvi" secondAttribute="centerX" id="tGP-hh-3Xz"/>
+                            <constraint firstItem="uvu-Gf-y5M" firstAttribute="centerY" secondItem="tCd-G9-dBY" secondAttribute="centerY" id="2nz-W6-2Qv"/>
+                            <constraint firstItem="NHH-Bu-SOL" firstAttribute="leading" secondItem="tCd-G9-dBY" secondAttribute="leading" id="8yK-tO-Ulg"/>
+                            <constraint firstItem="NHH-Bu-SOL" firstAttribute="top" secondItem="tCd-G9-dBY" secondAttribute="top" id="Kqm-Iv-0ey"/>
+                            <constraint firstItem="uvu-Gf-y5M" firstAttribute="centerX" secondItem="tCd-G9-dBY" secondAttribute="centerX" id="VFI-kL-4iM"/>
+                            <constraint firstItem="tCd-G9-dBY" firstAttribute="trailing" secondItem="NHH-Bu-SOL" secondAttribute="trailing" id="bnF-IE-SRX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tCd-G9-dBY"/>
                     </view>
                     <connections>
-                        <outlet property="activityView" destination="sbv-2c-Iyc" id="G5n-gj-WO0"/>
-                        <outlet property="webview" destination="VLe-TO-wvi" id="qaB-fF-FnA"/>
+                        <outlet property="loadingLabel" destination="uvu-Gf-y5M" id="b7V-5d-Arl"/>
+                        <outlet property="playerView" destination="NHH-Bu-SOL" id="8YO-SA-F92"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ImT-Pq-D8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>

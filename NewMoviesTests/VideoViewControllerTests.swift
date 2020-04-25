@@ -30,6 +30,5 @@ class VideoViewControllerTests: XCTestCase {
         
         sleep(1) // wait on request to get keyID
         XCTAssertNotNil(vc.keyID)
-        XCTAssertEqual(vc.activityView.isAnimating, true)
     }
 }
