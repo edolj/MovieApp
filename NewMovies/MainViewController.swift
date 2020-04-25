@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
         
         navigationItem.title = "search_title".localized
         view.backgroundColor = UIColor.init(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
+        styleNavigationController()
         
         tableView.setup()
         tableView.protocolDelegate = self
@@ -47,11 +48,10 @@ class MainViewController: UIViewController {
 extension MainViewController: SelecetedMovieDelegate {
     func didSelectItem(movieModel: MovieModel) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let detailVC = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController")
-            as? MovieDetailsViewController {
-            detailVC.movieModel = movieModel
-            self.view.window?.endEditing(true)
-            self.navigationController?.pushViewController(detailVC, animated: true)
+        if let detailsVC = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController") as? MovieDetailsViewController {
+            detailsVC.movieModel = movieModel
+            view.window?.endEditing(true)
+            navigationController?.pushViewController(detailsVC, animated: true)
         }
     }
 }

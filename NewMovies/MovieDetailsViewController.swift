@@ -32,99 +32,106 @@ class MovieDetailsViewController: UIViewController {
         shareButton.setTitle("share".localized, for: .normal)
         shareButton.addTarget(self, action: #selector(shareData), for: .touchUpInside)
         
-        if let movie = movieModel {
-            loadMovieDetails(movieName: movie.name)
-        }
+        loadMovieDetails(movieName: movieModel?.name)
     }
     
-    public func loadMovieDetails(movieName: String) {
-        let movieTitle = movieName.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-        let urlApi = "http://www.omdbapi.com/?apikey=482d09e9&t=" + movieTitle
+    public func loadMovieDetails(movieName: String?) {
+        guard let movieName = movieName else {
+            return
+        }
         
-        if let url = URL(string: urlApi) {
-           let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                print("Error with URLSession.")
-            } else {
-                if let content = data {
-                    do {
-                        if let jsonFile = try JSONSerialization.jsonObject(with: content,
-                            options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
-                        
-                            self.movieDetailsModel = MovieDetailsModel(dictionary: jsonFile)
-                            self.imdbID = self.movieDetailsModel?.imdbID
-                        }
-                        
-                        DispatchQueue.main.async {
-                            if let viewModel = self.movieDetailsModel {
-                                self.navigationItem.title = viewModel.title
-                                
-                                var infoText: [String] = []
-                                let separator = " | "
-                                if let runtime = viewModel.runtime {
-                                    infoText.append(runtime)
-                                    infoText.append(separator)
-                                }
-                                
-                                if let genre = viewModel.genre {
-                                    infoText.append(genre)
-                                    infoText.append(separator)
-                                }
-                                
-                                if let year = viewModel.year {
-                                    infoText.append(year)
-                                }
-                                
-                                if infoText.count == 0 {
-                                    self.infoLabel.isHidden = true
-                                } else {
-                                    self.infoLabel.text = infoText.joined()
-                                }
-                                
-                                if let actors = viewModel.actors {
-                                    self.actorsDetails.text = "actors_label".localized + actors
-                                } else {
-                                    self.actorsDetails.isHidden = true
-                                }
-                                
-                                if let director = viewModel.director {
-                                    self.directorDetails.text = "director_label".localized + director
-                                } else {
-                                    self.directorDetails.isHidden = true
-                                }
-                                
-                                if let lang = viewModel.language {
-                                    self.langDetails.text = "language_label".localized + lang
-                                } else {
-                                    self.langDetails.isHidden = true
-                                }
-                                
-                                if let imdbRating = viewModel.rating {
-                                    self.ratingDetails.setTitle(imdbRating, for: .normal)
-                                } else {
-                                    self.ratingDetails.isHidden = true
-                                }
-                                
-                                self.plotDetails.text = viewModel.plot
-                                
-                                let imageUrl = viewModel.poster ?? "missing_image"
-                                if let url = URL(string: imageUrl),
-                                   let data = try? Data(contentsOf: url) {
-                                    self.posterDetails.image = UIImage(data: data)
-                                } else {
-                                    self.posterDetails.image = UIImage(named: "missing_image")
-                                }
-                                
-                            }
-                        }
-                        
-                    } catch {
-                        print("Error in parsing data from JSON.")
-                    }
+        let movieTitle = movieName.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
+        let urlApi = String(format: "http://www.omdbapi.com/?apikey=%@&t=%@", ApiKey.imdb, movieTitle)
+        let url = URL(string: urlApi)
+        
+        setupURLSession(url: url)
+    }
+    
+    func setupURLSession(url: URL?) {
+        guard let url = url else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            do {
+                if let jsonFile = try JSONSerialization.jsonObject(with: data ?? Data(),
+                    options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
+                
+                    self.movieDetailsModel = MovieDetailsModel(dictionary: jsonFile)
+                    self.imdbID = self.movieDetailsModel?.imdbID
                 }
+                
+                DispatchQueue.main.async {
+                    self.setupData()
+                }
+            } catch {
+                print("Error in parsing data from JSON.")
             }
-         }
+        }
         task.resume()
+    }
+                    
+    func setupData() {
+        guard let viewModel = movieDetailsModel else {
+            return
+        }
+        
+        navigationItem.title = viewModel.title
+
+        var infoText: [String] = []
+        let separator = " | "
+        if let runtime = viewModel.runtime {
+            infoText.append(runtime)
+            infoText.append(separator)
+        }
+
+        if let genre = viewModel.genre {
+            infoText.append(genre)
+            infoText.append(separator)
+        }
+
+        if let year = viewModel.year {
+            infoText.append(year)
+        }
+
+        if infoText.count == 0 {
+            infoLabel.isHidden = true
+        } else {
+            infoLabel.text = infoText.joined()
+        }
+
+        if let actors = viewModel.actors {
+            actorsDetails.text = "actors_label".localized + actors
+        } else {
+            actorsDetails.isHidden = true
+        }
+
+        if let director = viewModel.director {
+            directorDetails.text = "director_label".localized + director
+        } else {
+            directorDetails.isHidden = true
+        }
+
+        if let lang = viewModel.language {
+            langDetails.text = "language_label".localized + lang
+        } else {
+            langDetails.isHidden = true
+        }
+
+        if let imdbRating = viewModel.rating {
+            ratingDetails.setTitle(imdbRating, for: .normal)
+        } else {
+            ratingDetails.isHidden = true
+        }
+
+        plotDetails.text = viewModel.plot
+
+        let imageUrl = viewModel.poster ?? "missing_image"
+        if let url = URL(string: imageUrl),
+            let data = try? Data(contentsOf: url) {
+            posterDetails.image = UIImage(data: data)
+        } else {
+            posterDetails.image = UIImage(named: "missing_image")
         }
     }
     
@@ -142,10 +149,9 @@ class MovieDetailsViewController: UIViewController {
     
     @IBAction func showTrailerButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "VideoViewController")
-            as? VideoViewController {
+        if let controller = storyboard.instantiateViewController(withIdentifier: "VideoViewController") as? VideoViewController {
             controller.imdbID = imdbID
-            self.navigationController?.pushViewController(controller, animated: true)
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 

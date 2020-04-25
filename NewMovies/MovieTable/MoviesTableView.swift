@@ -41,22 +41,21 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         let removeSpaces = key.trimmingCharacters(in: .whitespacesAndNewlines)
         let modifySearch = removeSpaces.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
         
-        let connectUrl = "http://www.omdbapi.com/?apikey=482d09e9&s="+modifySearch
+        let connectUrl = String(format: "http://www.omdbapi.com/?apikey=%@&s=%@", ApiKey.imdb, modifySearch)
         if let url = URL(string: connectUrl) {
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if error != nil {
                     print("Error with URLSession.")
                 } else {
-                    if let content = data {
-                        do {
-                            if let jsonFile = try JSONSerialization.jsonObject(with: content,
-                                options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary,
-                                let search = jsonFile["Search"] as? [NSDictionary] {
-                                    self.movies = search.map({ MovieModel(dictionary: $0) })
+                    do {
+                        if let jsonFile = try JSONSerialization.jsonObject(with: data ?? Data(),
+                                                                           options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
+                            if let search = jsonFile["Search"] as? [NSDictionary] {
+                                self.movies = search.map({ MovieModel(dictionary: $0) })
                             }
-                        } catch {
-                            print("Error in parsing data from JSON.")
                         }
+                    } catch {
+                        print("Error in parsing data from JSON.")
                     }
                 }
             }
@@ -73,7 +72,7 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath)
+        let cell = dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath)
 
         if let cell = cell as? MovieTableViewCell {
             let viewModel = movies[indexPath.row]
@@ -84,7 +83,7 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.deselectRow(at: indexPath, animated: true)
+        deselectRow(at: indexPath, animated: true)
         
         let viewModel = movies[indexPath.row]
         protocolDelegate?.didSelectItem(movieModel: viewModel)
