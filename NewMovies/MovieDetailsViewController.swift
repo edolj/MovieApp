@@ -55,8 +55,7 @@ class MovieDetailsViewController: UIViewController {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             do {
                 if let jsonFile = try JSONSerialization.jsonObject(with: data ?? Data(),
-                    options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
-                
+                                                                   options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
                     self.movieDetailsModel = MovieDetailsModel(dictionary: jsonFile)
                     self.imdbID = self.movieDetailsModel?.imdbID
                 }

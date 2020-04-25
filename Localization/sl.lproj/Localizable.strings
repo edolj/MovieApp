@@ -10,3 +10,6 @@
 "director_label" = "Direktor: ";
 "language_label" = "Jeziki: ";
 "share"          = "Deli";
+"alert"          = "Pozor";
+"return"         = "Nazaj";
+"noVideo"        = "Ni videa";

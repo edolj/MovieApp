@@ -10,3 +10,6 @@
 "director_label" = "Director: ";
 "language_label" = "Language: ";
 "share"          = "Share";
+"alert"          = "Alert";
+"return"         = "Return";
+"noVideo"        = "No trailer found";

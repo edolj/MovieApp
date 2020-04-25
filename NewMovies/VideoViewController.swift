@@ -78,7 +78,7 @@ class VideoViewController: UIViewController {
             return
         }
         
-        let task2 = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 print("Error with URLSession.")
             } else {
@@ -97,12 +97,12 @@ class VideoViewController: UIViewController {
                 }
             }
         }
-        task2.resume()
+        task.resume()
     }
 
     func showAlert() {
-        let alert = UIAlertController(title: "Alert", message: "No trailer found.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Return", style: UIAlertAction.Style.cancel, handler: { _ in
+        let alert = UIAlertController(title: "alert".localized, message: "noVideo".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "return".localized, style: UIAlertAction.Style.cancel, handler: { _ in
             self.navigationController?.popViewController(animated: true)
         }))
         present(alert, animated: true, completion: nil)
