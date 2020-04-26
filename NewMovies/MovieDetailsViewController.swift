@@ -26,7 +26,7 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.init(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
+        view.backgroundColor = Color.background
         plotDetails.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         
         shareButton.setTitle("share".localized, for: .normal)

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C74143A795B2703CBBBD0CF /* Pods_NewMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6CC912147E7A386B22746EB /* Pods_NewMovies.framework */; };
 		57EA4BA182D62763E737FA23 /* Pods_NewMoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 702BFA762E465E5DA6B5C5C5 /* Pods_NewMoviesTests.framework */; };
+		5C1D536A24558628009B06D7 /* Color+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D536924558628009B06D7 /* Color+Extra.swift */; };
 		5C2799C82337F3A1003068C5 /* MovieModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2799C72337F3A1003068C5 /* MovieModelTests.swift */; };
 		5C2799CA2337F4ED003068C5 /* MovieDetailsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2799C92337F4ED003068C5 /* MovieDetailsModelTests.swift */; };
 		5C2799CC2337F610003068C5 /* MoviesTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2799CB2337F610003068C5 /* MoviesTableViewTests.swift */; };
@@ -23,7 +24,6 @@
 		5CEAFFE22427FF98006A345E /* TextUnderImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEAFFE12427FF98006A345E /* TextUnderImageButton.swift */; };
 		DD89754E205D992900695C12 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89754D205D992900695C12 /* VideoViewController.swift */; };
 		DDD75A372267AAE100086769 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD75A362267AAE100086769 /* Main.storyboard */; };
-		DDD75A3A2267B14100086769 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD75A392267B14100086769 /* WebKit.framework */; };
 		DDEADAF722DB711800147EF6 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEADAF622DB711800147EF6 /* MovieTableViewCell.xib */; };
 		DDFD61BE204462C900722103 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD61BD204462C900722103 /* AppDelegate.swift */; };
 		DDFD61C0204462C900722103 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD61BF204462C900722103 /* MainViewController.swift */; };
@@ -49,6 +49,7 @@
 /* Begin PBXFileReference section */
 		2DE07FA345AEF709E68378FC /* Pods-NewMoviesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewMoviesTests.debug.xcconfig"; path = "Target Support Files/Pods-NewMoviesTests/Pods-NewMoviesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		312A9F254F7AC1FCCCE8451F /* Pods-NewMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewMovies.release.xcconfig"; path = "Target Support Files/Pods-NewMovies/Pods-NewMovies.release.xcconfig"; sourceTree = "<group>"; };
+		5C1D536924558628009B06D7 /* Color+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extra.swift"; sourceTree = "<group>"; };
 		5C2799BD2337F1E7003068C5 /* NewMoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewMoviesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C2799C12337F1E7003068C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C2799C72337F3A1003068C5 /* MovieModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModelTests.swift; sourceTree = "<group>"; };
@@ -56,7 +57,6 @@
 		5C2799CB2337F610003068C5 /* MoviesTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewTests.swift; sourceTree = "<group>"; };
 		5C2799CD233803F8003068C5 /* MovieTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCellTests.swift; sourceTree = "<group>"; };
 		5C881D242427E4BD0064BA18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5C881D262427E4E00064BA18 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5C881D292427F42F0064BA18 /* String+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extra.swift"; sourceTree = "<group>"; };
 		5CAC02DF24548BFA00492E6C /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		5CAC02E22454A19D00492E6C /* ViewController+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extra.swift"; sourceTree = "<group>"; };
@@ -98,7 +98,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDD75A3A2267B14100086769 /* WebKit.framework in Frameworks */,
 				0C74143A795B2703CBBBD0CF /* Pods_NewMovies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,7 +113,6 @@
 				2DE07FA345AEF709E68378FC /* Pods-NewMoviesTests.debug.xcconfig */,
 				78D2613DE245786567EB6601 /* Pods-NewMoviesTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -145,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				5CAC02DF24548BFA00492E6C /* ApiKey.swift */,
+				5C1D536924558628009B06D7 /* Color+Extra.swift */,
 				5C881D292427F42F0064BA18 /* String+Extra.swift */,
 				5CEAFFE12427FF98006A345E /* TextUnderImageButton.swift */,
 				5CAC02E22454A19D00492E6C /* ViewController+Extra.swift */,
@@ -420,6 +419,7 @@
 				5CEAFFE22427FF98006A345E /* TextUnderImageButton.swift in Sources */,
 				DDFD61BE204462C900722103 /* AppDelegate.swift in Sources */,
 				DDFD61D620446C8A00722103 /* MovieModel.swift in Sources */,
+				5C1D536A24558628009B06D7 /* Color+Extra.swift in Sources */,
 				5CAC02E32454A19D00492E6C /* ViewController+Extra.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +439,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				5C881D242427E4BD0064BA18 /* en */,
-				5C881D262427E4E00064BA18 /* sl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

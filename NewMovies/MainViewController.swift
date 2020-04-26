@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "search_title".localized
-        view.backgroundColor = UIColor.init(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
+        view.backgroundColor = Color.background
         styleNavigationController()
         
         tableView.setup()

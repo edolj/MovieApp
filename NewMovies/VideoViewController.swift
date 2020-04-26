@@ -22,9 +22,9 @@ class VideoViewController: UIViewController {
         
         playerView.isHidden = true
         playerView.backgroundColor = .clear
-        loadingLabel.text = "Loading..."
+        loadingLabel.text = "loading".localized
         loadingLabel.textColor = .white
-        view.backgroundColor = UIColor.init(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
+        view.backgroundColor = Color.background
         
         if let imdbID = imdbID {
             let urlApi = String(format: "http://api.themoviedb.org/3/movie/%@?api_key=%@", imdbID, ApiKey.tmdb)
