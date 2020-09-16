@@ -8,7 +8,27 @@
 
 import UIKit
 
+enum DestinationViewController {
+    case detailsViewController
+}
+
 extension UIViewController {
+    func navigate(from vc: UIViewController, to destinationController: DestinationViewController, data: Any?) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destinationVC: UIViewController
+        
+        switch destinationController {
+        case .detailsViewController:
+            destinationVC = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController")
+            if let movieModel = data as? MovieModel,
+                let vc = destinationVC as? MovieDetailsViewController {
+                vc.movieModel = movieModel
+            }
+        }
+        
+        navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
     func styleNavigationController() {
         let isTranslucent = true
         if isTranslucent {

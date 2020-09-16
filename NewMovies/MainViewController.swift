@@ -34,6 +34,8 @@ class MainViewController: UIViewController {
     }
     
     @objc func startSearch() {
+        view.window?.endEditing(true)
+        
         if let userInput = searchField.text,
            userInput.count > 0 {
             tableView.searchDatabase(inputText: userInput)
@@ -47,12 +49,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: SelecetedMovieDelegate {
     func didSelectItem(movieModel: MovieModel) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let detailsVC = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController") as? MovieDetailsViewController {
-            detailsVC.movieModel = movieModel
-            view.window?.endEditing(true)
-            navigationController?.pushViewController(detailsVC, animated: true)
-        }
+        navigate(from: self, to: .detailsViewController, data: movieModel)
     }
 }
 

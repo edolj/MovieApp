@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vqC-RZ-QNO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vqC-RZ-QNO">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -92,9 +92,6 @@
                                             <constraint firstAttribute="width" constant="70" id="W4Q-Vt-acJ"/>
                                         </constraints>
                                         <state key="normal" image="play_icon"/>
-                                        <connections>
-                                            <action selector="showTrailerButtonPressed:" destination="oI0-iU-pdF" eventType="touchUpInside" id="gt8-ps-fYr"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgi-Cz-cPF" customClass="TextUnderImageButton" customModule="NewMovies" customModuleProvider="target">
                                         <rect key="frame" x="167.5" y="286.5" width="40" height="40"/>
@@ -190,6 +187,7 @@
                         <outlet property="directorDetails" destination="LOb-fQ-5uF" id="dZ1-SM-dWl"/>
                         <outlet property="infoLabel" destination="1NQ-rx-gbC" id="LYc-QJ-vKU"/>
                         <outlet property="langDetails" destination="xlb-MP-qVu" id="uom-UY-tqk"/>
+                        <outlet property="playButton" destination="MJh-kF-FVK" id="UTa-wF-GbC"/>
                         <outlet property="plotDetails" destination="pAr-MJ-p7J" id="3I3-H4-xBy"/>
                         <outlet property="posterDetails" destination="L1e-w0-gNI" id="Utb-tl-Y0I"/>
                         <outlet property="ratingDetails" destination="itd-o2-8Dq" id="lCD-Oe-f5R"/>
@@ -199,49 +197,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJW-Hj-jG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1408.8" y="116.49175412293854"/>
-        </scene>
-        <!--Video View Controller-->
-        <scene sceneID="mdK-zr-H6Z">
-            <objects>
-                <viewController storyboardIdentifier="VideoViewController" id="VNo-LA-9DD" customClass="VideoViewController" customModule="NewMovies" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xmq-uU-8gc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHH-Bu-SOL" customClass="WKYTPlayerView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="NHH-Bu-SOL" secondAttribute="height" multiplier="15:9" id="jOZ-Hs-bl3"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvu-Gf-y5M">
-                                <rect key="frame" x="87.5" y="324" width="200" height="19.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="xkm-XH-0Po"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="uvu-Gf-y5M" firstAttribute="centerY" secondItem="tCd-G9-dBY" secondAttribute="centerY" id="2nz-W6-2Qv"/>
-                            <constraint firstItem="NHH-Bu-SOL" firstAttribute="leading" secondItem="tCd-G9-dBY" secondAttribute="leading" id="8yK-tO-Ulg"/>
-                            <constraint firstItem="NHH-Bu-SOL" firstAttribute="top" secondItem="tCd-G9-dBY" secondAttribute="top" id="Kqm-Iv-0ey"/>
-                            <constraint firstItem="uvu-Gf-y5M" firstAttribute="centerX" secondItem="tCd-G9-dBY" secondAttribute="centerX" id="VFI-kL-4iM"/>
-                            <constraint firstItem="tCd-G9-dBY" firstAttribute="trailing" secondItem="NHH-Bu-SOL" secondAttribute="trailing" id="bnF-IE-SRX"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="tCd-G9-dBY"/>
-                    </view>
-                    <connections>
-                        <outlet property="loadingLabel" destination="uvu-Gf-y5M" id="b7V-5d-Arl"/>
-                        <outlet property="playerView" destination="NHH-Bu-SOL" id="8YO-SA-F92"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ImT-Pq-D8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2416.8000000000002" y="116.49175412293854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eXv-4M-FP3">

@@ -10,6 +10,7 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var shareButton: TextUnderImageButton!
     @IBOutlet weak var posterDetails: UIImageView!
     @IBOutlet weak var infoLabel: UILabel!
@@ -31,6 +32,9 @@ class MovieDetailsViewController: UIViewController {
         
         shareButton.setTitle("share".localized, for: .normal)
         shareButton.addTarget(self, action: #selector(shareData), for: .touchUpInside)
+        
+        playButton.isHidden = true
+        //playButton.addTarget(self, action: #selector(playVideo), for: .touchUpInside)
         
         loadMovieDetails(movieName: movieModel?.name)
     }
@@ -144,14 +148,6 @@ class MovieDetailsViewController: UIViewController {
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         activityController.setValue(title, forKey: "Subject")
         present(activityController, animated: true)
-    }
-    
-    @IBAction func showTrailerButtonPressed(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "VideoViewController") as? VideoViewController {
-            controller.imdbID = imdbID
-            navigationController?.present(controller, animated: true)
-        }
     }
 
     deinit {
