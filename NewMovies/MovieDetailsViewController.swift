@@ -62,6 +62,9 @@ class MovieDetailsViewController: UIViewController {
                                                                    options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
                     self.movieDetailsModel = MovieDetailsModel(dictionary: jsonFile)
                     self.imdbID = self.movieDetailsModel?.imdbID
+                    self.imdbID.map {
+                        YoutubeUrlRetriever.getYoutubeURL(imdbID: $0)
+                    }
                 }
                 
                 DispatchQueue.main.async {
@@ -139,18 +142,22 @@ class MovieDetailsViewController: UIViewController {
     }
     
     @objc func shareData() {
-        guard let plot = movieDetailsModel?.plot,
-            let title = movieModel?.name else {
-                return
+        guard let keyID = YoutubeUrlRetriever.keyID else {
+            let items = [movieDetailsModel?.plot ?? ""]
+            let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            activityController.setValue(movieModel?.name, forKey: "Subject")
+            present(activityController, animated: true)
+            return
         }
         
-        let items = [plot]
+        let items = [URL(string: "https://www.youtube.com/watch?v=\(keyID)")!]
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        activityController.setValue(title, forKey: "Subject")
+        activityController.setValue(movieModel?.name, forKey: "Subject")
         present(activityController, animated: true)
     }
 
     deinit {
+        YoutubeUrlRetriever.keyID = nil
         print("--class MovieDetailsViewController--")
     }
  }
