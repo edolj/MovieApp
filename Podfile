@@ -6,7 +6,6 @@ target 'NewMovies' do
   use_frameworks!
 
   # Pods for NewMovies
-  pod "YoutubePlayer-in-WKWebView", "~> 0.2.0"
 
   target 'NewMoviesTests' do
     inherit! :search_paths
