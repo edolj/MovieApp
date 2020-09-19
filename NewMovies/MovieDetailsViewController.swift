@@ -33,8 +33,7 @@ class MovieDetailsViewController: UIViewController {
         shareButton.setTitle("share".localized, for: .normal)
         shareButton.addTarget(self, action: #selector(shareData), for: .touchUpInside)
         
-        playButton.isHidden = true
-        //playButton.addTarget(self, action: #selector(playVideo), for: .touchUpInside)
+        playButton.addTarget(self, action: #selector(playVideo), for: .touchUpInside)
         
         loadMovieDetails(movieName: movieModel?.name)
     }
@@ -154,6 +153,17 @@ class MovieDetailsViewController: UIViewController {
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         activityController.setValue(movieModel?.name, forKey: "Subject")
         present(activityController, animated: true)
+    }
+    
+    @objc func playVideo() {
+        guard let keyID = YoutubeUrlRetriever.keyID else {
+            let alert = UIAlertController(title: "alert".localized, message: "noVideo".localized, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(alert, animated: true)
+            return
+        }
+        
+        navigate(from: self, to: .webViewController, data: URL(string: "https://www.youtube.com/watch?v=\(keyID)"))
     }
 
     deinit {

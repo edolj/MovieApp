@@ -12,6 +12,7 @@
 		5C2799CA2337F4ED003068C5 /* MovieDetailsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2799C92337F4ED003068C5 /* MovieDetailsModelTests.swift */; };
 		5C2799CC2337F610003068C5 /* MoviesTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2799CB2337F610003068C5 /* MoviesTableViewTests.swift */; };
 		5C2799CE233803F8003068C5 /* MovieTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2799CD233803F8003068C5 /* MovieTableViewCellTests.swift */; };
+		5C700D7325168DD10069CEEC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C700D7225168DD10069CEEC /* WebViewController.swift */; };
 		5C881D232427E4BD0064BA18 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C881D252427E4BD0064BA18 /* Localizable.strings */; };
 		5C881D2A2427F42F0064BA18 /* String+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C881D292427F42F0064BA18 /* String+Extra.swift */; };
 		5C95F9C72512A16900C5BE03 /* YoutubeUrlRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C95F9C62512A16900C5BE03 /* YoutubeUrlRetriever.swift */; };
@@ -53,6 +54,7 @@
 		5C2799C92337F4ED003068C5 /* MovieDetailsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsModelTests.swift; sourceTree = "<group>"; };
 		5C2799CB2337F610003068C5 /* MoviesTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewTests.swift; sourceTree = "<group>"; };
 		5C2799CD233803F8003068C5 /* MovieTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCellTests.swift; sourceTree = "<group>"; };
+		5C700D7225168DD10069CEEC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		5C881D242427E4BD0064BA18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5C881D292427F42F0064BA18 /* String+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extra.swift"; sourceTree = "<group>"; };
 		5C95F9C62512A16900C5BE03 /* YoutubeUrlRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeUrlRetriever.swift; sourceTree = "<group>"; };
@@ -186,12 +188,13 @@
 			children = (
 				DDFD61BF204462C900722103 /* MainViewController.swift */,
 				DDFD61D72044C8D400722103 /* MovieDetailsViewController.swift */,
-				DDD75A362267AAE100086769 /* Main.storyboard */,
-				DDFD61C4204462C900722103 /* Assets.xcassets */,
-				DDFD61BD204462C900722103 /* AppDelegate.swift */,
+				5C700D7225168DD10069CEEC /* WebViewController.swift */,
 				5C95F9C62512A16900C5BE03 /* YoutubeUrlRetriever.swift */,
+				DDD75A362267AAE100086769 /* Main.storyboard */,
 				DDFD61C6204462C900722103 /* LaunchScreen.storyboard */,
+				DDFD61BD204462C900722103 /* AppDelegate.swift */,
 				DDFD61C9204462C900722103 /* Info.plist */,
+				DDFD61C4204462C900722103 /* Assets.xcassets */,
 				5CAC02E52454AC0000492E6C /* MovieTable */,
 				5CAC02E42454ABE500492E6C /* ViewModel */,
 				5CAC02E12454A01900492E6C /* Extra */,
@@ -386,6 +389,7 @@
 				5CEAFFE22427FF98006A345E /* TextUnderImageButton.swift in Sources */,
 				DDFD61BE204462C900722103 /* AppDelegate.swift in Sources */,
 				DDFD61D620446C8A00722103 /* MovieModel.swift in Sources */,
+				5C700D7325168DD10069CEEC /* WebViewController.swift in Sources */,
 				5C1D536A24558628009B06D7 /* Color+Extra.swift in Sources */,
 				5CAC02E32454A19D00492E6C /* ViewController+Extra.swift in Sources */,
 			);
@@ -513,7 +517,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -567,7 +571,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

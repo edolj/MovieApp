@@ -21,7 +21,8 @@ class MoviesTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         delegate = self
         dataSource = self
         separatorColor = .white
-        backgroundColor = UIColor.init(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
+        indicatorStyle = .white
+        backgroundColor = Color.background
         
         register(UINib.init(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
     }

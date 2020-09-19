@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vqC-RZ-QNO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vqC-RZ-QNO">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,7 +26,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="search"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6j-G1-DuT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6j-G1-DuT">
                                 <rect key="frame" x="117.5" y="134" width="140" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -43,6 +44,7 @@
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="IEx-6g-ex9" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="1zO-R9-QrU"/>
@@ -55,7 +57,6 @@
                             <constraint firstItem="u6j-G1-DuT" firstAttribute="centerX" secondItem="k6o-oe-r3g" secondAttribute="centerX" id="mjn-2G-Oh5"/>
                             <constraint firstItem="IEx-6g-ex9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mzU-qB-F5J"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="bSg-d6-MTu"/>
                     <connections>
@@ -173,6 +174,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="2XZ-95-E8F"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="keO-sg-1Xy" firstAttribute="leading" secondItem="2XZ-95-E8F" secondAttribute="leading" id="598-9r-SBd"/>
@@ -180,7 +182,6 @@
                             <constraint firstAttribute="bottom" secondItem="keO-sg-1Xy" secondAttribute="bottom" id="kdI-VF-fKv"/>
                             <constraint firstItem="2XZ-95-E8F" firstAttribute="trailing" secondItem="keO-sg-1Xy" secondAttribute="trailing" id="vxt-di-lLg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="2XZ-95-E8F"/>
                     </view>
                     <connections>
                         <outlet property="actorsDetails" destination="UTT-K6-jhh" id="XdS-M0-HWa"/>
@@ -197,6 +198,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJW-Hj-jG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1408.8" y="116.49175412293854"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="tT5-SM-pOd">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="xey-yM-Ya1" customClass="WebViewController" customModule="NewMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BC5-ZP-adU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FwA-Mt-Q7O">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rB8-Cv-beE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rB8-Cv-beE" firstAttribute="bottom" secondItem="FwA-Mt-Q7O" secondAttribute="bottom" id="23T-qG-Wfd"/>
+                            <constraint firstItem="FwA-Mt-Q7O" firstAttribute="leading" secondItem="rB8-Cv-beE" secondAttribute="leading" id="K8G-8v-Uzp"/>
+                            <constraint firstItem="rB8-Cv-beE" firstAttribute="trailing" secondItem="FwA-Mt-Q7O" secondAttribute="trailing" id="jMN-SI-PEt"/>
+                            <constraint firstItem="FwA-Mt-Q7O" firstAttribute="top" secondItem="rB8-Cv-beE" secondAttribute="top" id="pe5-73-DKb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="FwA-Mt-Q7O" id="cNN-97-VAt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s6Y-XZ-bnF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2308" y="117"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eXv-4M-FP3">
@@ -222,9 +257,17 @@
             <point key="canvasLocation" x="-534" y="118"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Kgi-Cz-cPF">
+            <size key="intrinsicContentSize" width="53" height="20"/>
+        </designable>
+    </designables>
     <resources>
         <image name="imdb_rating" width="16" height="15"/>
         <image name="play_icon" width="72" height="80"/>
         <image name="share_icon" width="20" height="20"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

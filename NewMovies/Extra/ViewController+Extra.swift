@@ -10,6 +10,7 @@ import UIKit
 
 enum DestinationViewController {
     case detailsViewController
+    case webViewController
 }
 
 extension UIViewController {
@@ -21,8 +22,14 @@ extension UIViewController {
         case .detailsViewController:
             destinationVC = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController")
             if let movieModel = data as? MovieModel,
-                let vc = destinationVC as? MovieDetailsViewController {
+               let vc = destinationVC as? MovieDetailsViewController {
                 vc.movieModel = movieModel
+            }
+        case .webViewController:
+            destinationVC = storyboard.instantiateViewController(withIdentifier: "WebViewController")
+            if let youtubeURL = data as? URL,
+               let vc = destinationVC as? WebViewController {
+                vc.youtubeURL = youtubeURL
             }
         }
         
