@@ -26,6 +26,8 @@ class MainViewController: UIViewController {
         
         searchField.delegate = self
         searchField.becomeFirstResponder()
+        searchField.textColor = .black
+        searchField.tintColor = .black
         
         findButton.setTitle("search_title".localized, for: .normal)
         findButton.addTarget(self, action: #selector(startSearch), for: .touchUpInside)
